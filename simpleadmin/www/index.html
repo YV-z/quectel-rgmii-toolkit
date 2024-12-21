@@ -1116,30 +1116,24 @@
                     this.pccPCI = "0";
                     this.sccPCI = "-";
                   }
-
+                  
                   // --- IPv4 and IPv6 ---
                   // find the value from line "IPV4"
-                  const ipv4Lines = lines.filter(line => typeof line === 'string' && line.trim().includes("IPV4"));
-                  const ipv4Line = ipv4Lines.length > 0 ? ipv4Lines[0] : undefined;
-                  console.log("Found IPv4 line:", ipv4Line);
-                  if (ipv4Line && ipv4Line.split(",").length > 3) {
-                    this.ipv4 = ipv4Line.split(",")[3].replace(/"/g, "");
-                    console.log("Extracted IPv4:", this.ipv4);
+                  const ipv4Line = lines.find((line) => line.includes("IPV4"));
+                  if (ipv4Line && ipv4Line.split(",").length > 4) {
+                    this.ipv4 = ipv4Line.split(",")[4].replace(/"/g, "");
                   } else {
-                    console.error("IPV4 address not found or is malformed.");
-                    this.ipv4 = null;
+                    // Handle the case where IPV4 is not found or doesn't have enough parts
+                    this.ipv4 = null; // or console.error("IPV4 address not found or is malformed");
                   }
                   
                   // find the value from line "IPV6"
-                  const ipv6Lines = lines.filter(line => typeof line === 'string' && line.trim().includes("IPV6"));
-                  const ipv6Line = ipv6Lines.length > 0 ? ipv6Lines[0] : undefined;
-                  console.log("Found IPv6 line:", ipv6Line);
-                  if (ipv6Line && ipv6Line.split(",").length > 3) {
-                    this.ipv6 = ipv6Line.split(",")[3].replace(/"/g, "");
-                    console.log("Extracted IPv6:", this.ipv6);
+                  const ipv6Line = lines.find((line) => line.includes("IPV6"));
+                  if (ipv6Line && ipv6Line.split(",").length > 4) {
+                    this.ipv6 = ipv6Line.split(",")[4].replace(/"/g, "");
                   } else {
-                    console.error("IPV6 address not found or is malformed.");
-                    this.ipv6 = null;
+                    // Handle the case where IPV6 is not found or doesn't have enough parts
+                    this.ipv6 = null; // or console.error("IPV6 address not found or is malformed");
                   }
 
                   // Traffic Stats
