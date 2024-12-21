@@ -2,14 +2,14 @@
 
 # Define constants
 # Define GitHub repo info
-GITUSER="iamromulan"
+GITUSER="YV-z"
 REPONAME="quectel-rgmii-toolkit"
 GITTREE="SDXLEMUR"
 GITMAINTREE="SDXLEMUR"
 GITDEVTREE="development-SDXLEMUR"
-GITROOT="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
-GITROOTMAIN="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
-GITROOTDEV="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
+GITROOT="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
+GITROOTMAIN="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
+GITROOTDEV="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
 
 # Define filesystem path
 DIR_NAME="simpleadmin"
@@ -55,14 +55,14 @@ cat <<EOF > "$TMP_SCRIPT"
 #!/bin/bash
 
 # Define GitHub repo info
-GITUSER="iamromulan"
+GITUSER="YV-z"
 REPONAME="quectel-rgmii-toolkit"
 GITTREE="SDXLEMUR"
 GITMAINTREE="SDXLEMUR"
 GITDEVTREE="development-SDXLEMUR"
-GITROOT="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
-GITROOTMAIN="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
-GITROOTDEV="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
+GITROOT="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
+GITROOTMAIN="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
+GITROOTDEV="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
 
 # Define filesystem path
 SIMPLE_ADMIN_DIR="/usrdata/simpleadmin"
@@ -223,7 +223,7 @@ echo -e "\e[1;31m2) Installing simpleadmin from the $GITTREE branch\e[0m"
 install_ttyd() {
     echo -e "\e[1;34mStarting ttyd installation process...\e[0m"
     cd $SIMPLE_ADMIN_DIR/console
-    curl -L -o ttyd https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.armhf && chmod +x ttyd
+    curl -L -o ttyd https://cdn.jsdelivr.net/https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.armhf && chmod +x ttyd
     wget "$GITROOT/simpleadmin/console/ttyd.bash" && chmod +x ttyd.bash
     cd $SIMPLE_ADMIN_DIR/systemd/
 	wget "$GITROOT/simpleadmin/systemd/ttyd.service"
