@@ -1119,21 +1119,41 @@
                   
                   // --- IPv4 and IPv6 ---
                   // find the value from line "IPV4"
-                  const ipv4Line = lines.find((line) => line.includes("IPV4"));
-                  if (ipv4Line && ipv4Line.split(",").length > 4) {
-                    this.ipv4 = ipv4Line.split(",")[4].replace(/"/g, "");
+                  const ipv4Lines = lines.filter(line => typeof line === 'string' && line.trim().includes("IPV4"));
+                  const ipv4Line = ipv4Lines.length > 0 ? ipv4Lines[0] : undefined;
+                  console.log("Found IPv4 line:", ipv4Line);
+                  if (ipv4Line) {
+                    const parts = ipv4Line.split(",");
+                    console.log("IPv4 parts length:", parts.length);
+                    if (parts.length > 3) {
+                      this.ipv4 = parts[3].replace(/"/g, "").replace(/\r/g, "");
+                      console.log("Extracted IPv4:", this.ipv4);
+                    } else {
+                      console.error("IPV4 line doesn't have enough parts.");
+                      this.ipv4 = null;
+                    }
                   } else {
-                    // Handle the case where IPV4 is not found or doesn't have enough parts
-                    this.ipv4 = null; // or console.error("IPV4 address not found or is malformed");
+                    console.error("No IPv4 line found.");
+                    this.ipv4 = null;
                   }
                   
                   // find the value from line "IPV6"
-                  const ipv6Line = lines.find((line) => line.includes("IPV6"));
-                  if (ipv6Line && ipv6Line.split(",").length > 4) {
-                    this.ipv6 = ipv6Line.split(",")[4].replace(/"/g, "");
+                  const ipv6Lines = lines.filter(line => typeof line === 'string' && line.trim().includes("IPV6"));
+                  const ipv6Line = ipv6Lines.length > 0 ? ipv6Lines[0] : undefined;
+                  console.log("Found IPv6 line:", ipv6Line);
+                  if (ipv6Line) {
+                    const parts = ipv6Line.split(",");
+                    console.log("IPv6 parts length:", parts.length);
+                    if (parts.length > 3) {
+                      this.ipv6 = parts[3].replace(/"/g, "").replace(/\r/g, "");
+                      console.log("Extracted IPv6:", this.ipv6);
+                    } else {
+                      console.error("IPV6 line doesn't have enough parts.");
+                      this.ipv6 = null;
+                    }
                   } else {
-                    // Handle the case where IPV6 is not found or doesn't have enough parts
-                    this.ipv6 = null; // or console.error("IPV6 address not found or is malformed");
+                    console.error("No IPv6 line found.");
+                    this.ipv6 = null;
                   }
 
 
