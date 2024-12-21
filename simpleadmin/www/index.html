@@ -224,7 +224,7 @@
                       </tr>
                       <tr>
                         <th scope="row">IPv<sup>4</sup></th>
-                        <td x-text=""></td>
+                        <td x-text="ipv4"></td>
                       </tr>
                       <tr>
                         <th scope="row">IPv<sup>6</sup></th>
@@ -626,7 +626,7 @@
           earfcns: "000",
           pccPCI: "0",
           sccPCI: "-",
-          : "000.000.000.000",
+          ipv4: "000.000.000.000",
           ipv6: "0000:0000:0000:0000:0000:0000:0000:0000",
           cellID: "Unknown",
           eNBID: "Unknown",
@@ -1116,14 +1116,13 @@
                     this.pccPCI = "0";
                     this.sccPCI = "-";
                   }
-                  
-                   // --- IPv4 and IPv6 ---
+
+                  // --- IPv4 and IPv6 ---
                   // find the value from line "IPV4"
                   this.ipv4 = null;
 
                   // find the value from line "IPV6"
-                  this.ipv6 = null;
-
+                  this.ipv6 =null;
 
                   // Traffic Stats
                   // for NR traffic stats: +QGDNRCNT: 3263753367,109876105
