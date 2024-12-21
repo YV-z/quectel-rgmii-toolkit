@@ -2,14 +2,14 @@
 
 # Define toolkit paths
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin:/usrdata/root/bin
-GITUSER="iamromulan"
+GITUSER="YV-z"
 REPONAME="quectel-rgmii-toolkit"
 GITTREE="SDXLEMUR"
 GITMAINTREE="SDXLEMUR"
 GITDEVTREE="development-SDXLEMUR"
-GITROOT="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
-GITROOTMAIN="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
-GITROOTDEV="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
+GITROOT="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
+GITROOTMAIN="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
+GITROOTDEV="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
 TMP_DIR="/tmp"
 USRDATA_DIR="/usrdata"
 SOCAT_AT_DIR="/usrdata/socat-at-bridge"
@@ -750,7 +750,7 @@ install_sshd() {
 
 ARCH=$(uname -a)
 if echo "$ARCH" | grep -q "aarch64"; then
-    cd /tmp && wget -O RM55x_rcPCIe_toolkit.sh https://raw.githubusercontent.com/iamromulan/quectel-rgmii-toolkit/SDXPINN/RM55x_rcPCIe_toolkit.sh && chmod +x RM55x_rcPCIe_toolkit.sh && ./RM55x_rcPCIe_toolkit.sh && cd /
+    cd /tmp && wget -O RM55x_rcPCIe_toolkit.sh https://cdn.jsdelivr.net/https://raw.githubusercontent.com/iamromulan/quectel-rgmii-toolkit/SDXPINN/RM55x_rcPCIe_toolkit.sh && chmod +x RM55x_rcPCIe_toolkit.sh && ./RM55x_rcPCIe_toolkit.sh && cd /
     exit 0
 elif echo "$ARCH" | grep -q "armv7l"; then
     # Continue if architecture is armv7l
@@ -824,7 +824,7 @@ echo "                                           :+##+.            "
 
     echo -e "\e[92m"
     echo "Welcome to iamromulan's RGMII Toolkit script for Quectel RMxxx Series modems!"
-    echo "Visit https://github.com/iamromulan for more!"
+    echo "Visit https://cdn.jsdelivr.net/https://github.com/iamromulan for more!"
     echo -e "\e[0m"
     echo "Select an option:"
     echo -e "\e[0m"
@@ -923,7 +923,7 @@ echo "                                           :+##+.            "
 			mkdir /usrdata/root
      	    mkdir /usrdata/root/bin
 			cd /usrdata/root/bin
-     	    wget -O fast https://github.com/ddo/fast/releases/download/v0.0.4/fast_linux_arm && chmod +x fast
+     	    wget -O fast https://cdn.jsdelivr.net/https://github.com/ddo/fast/releases/download/v0.0.4/fast_linux_arm && chmod +x fast
      	    cd /
 			ln -sf /usrdata/root/bin/fast /bin
      	    remount_ro
