@@ -1119,22 +1119,16 @@
                   
                   // --- IPv4 and IPv6 ---
                   // find the value from line "IPV4"
-                  const ipv4Line = lines.find((line) => line.includes("IPV4"));
-                  if (ipv4Line && ipv4Line.split(",").length > 4) {
-                    this.ipv4 = ipv4Line.split(",")[4].replace(/"/g, "");
-                  } else {
-                    // Handle the case where IPV4 is not found or doesn't have enough parts
-                    this.ipv4 = null; // or console.error("IPV4 address not found or is malformed");
-                  }
-                  
+                  this.ipv4 = lines
+                    .find((line) => line.includes("IPV4"))
+                    .split(",")[4]
+                    .replace(/"/g, "");
                   // find the value from line "IPV6"
-                  const ipv6Line = lines.find((line) => line.includes("IPV6"));
-                  if (ipv6Line && ipv6Line.split(",").length > 4) {
-                    this.ipv6 = ipv6Line.split(",")[4].replace(/"/g, "");
-                  } else {
-                    // Handle the case where IPV6 is not found or doesn't have enough parts
-                    this.ipv6 = null; // or console.error("IPV6 address not found or is malformed");
-                  }
+                  this.ipv6 = lines
+                    .find((line) => line.includes("IPV6"))
+                    .split(",")[4]
+                    .replace(/"/g, "");
+
 
                   // Traffic Stats
                   // for NR traffic stats: +QGDNRCNT: 3263753367,109876105
