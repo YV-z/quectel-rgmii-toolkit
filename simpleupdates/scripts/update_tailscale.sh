@@ -2,14 +2,14 @@
 
 # Define constants
 # Define GitHub repo info
-GITUSER="iamromulan"
+GITUSER="YV-z"
 REPONAME="quectel-rgmii-toolkit"
 GITTREE="SDXLEMUR"
 GITMAINTREE="SDXLEMUR"
 GITDEVTREE="development-SDXLEMUR"
-GITROOT="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
-GITROOTMAIN="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
-GITROOTDEV="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
+GITROOT="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
+GITROOTMAIN="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
+GITROOTDEV="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
 # Define filesystem path
 DIR_NAME="tailscale"
 SERVICE_FILE="/lib/systemd/system/install_tailscale.service"
@@ -57,14 +57,14 @@ cat <<EOF > "$TMP_SCRIPT"
 export HOME=/usrdata/root
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin:/usrdata/root/bin
 # Define GitHub repo info
-GITUSER="iamromulan"
+GITUSER="YV-z"
 REPONAME="quectel-rgmii-toolkit"
 GITTREE="SDXLEMUR"
 GITMAINTREE="SDXLEMUR"
 GITDEVTREE="development-SDXLEMUR"
-GITROOT="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
-GITROOTMAIN="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
-GITROOTDEV="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
+GITROOT="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
+GITROOTMAIN="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
+GITROOTDEV="https://cdn.jsdelivr.net/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
 # Define filesystem path
 TAILSCALE_DIR="/usrdata/tailscale/"
 TAILSCALE_SYSD_DIR="/usrdata/tailscale/systemd"
