@@ -593,12 +593,26 @@
                 console.log("开始解析IP地址...");
                 const ipv4Line = lines.find(line => line.includes("IPV4"));
                 if (ipv4Line) {
-                  this.ipv4 = ipv4Line.split(",")[4].replace(/"/g, "");
+                  const parts = ipv4Line.split(",");
+                  // 确保有足够的元素并且索引4存在
+                  if (parts.length > 4) {
+                    this.ipv4 = parts[4].replace(/"/g, "");
+                  } else if (parts.length > 3) {
+                    // 尝试备用索引
+                    this.ipv4 = parts[3].replace(/"/g, "");
+                  }
                 }
 
                 const ipv6Line = lines.find(line => line.includes("IPV6"));
                 if (ipv6Line) {
-                  this.ipv6 = ipv6Line.split(",")[4].replace(/"/g, "");
+                  const parts = ipv6Line.split(",");
+                  // 确保有足够的元素并且索引4存在
+                  if (parts.length > 4) {
+                    this.ipv6 = parts[4].replace(/"/g, "");
+                  } else if (parts.length > 3) {
+                    // 尝试备用索引
+                    this.ipv6 = parts[3].replace(/"/g, "");
+                  }
                 }
                 console.log("IPv4:", this.ipv4);
                 console.log("IPv6:", this.ipv6);
