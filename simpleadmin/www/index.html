@@ -20,6 +20,42 @@
     <!--  Import BootStrap Javascript -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/alpinejs.min.js" defer></script>
+    <!-- 错误通知的样式 -->
+  <style>
+    .alert-danger {
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 8px;
+      opacity: 0.95;
+      backdrop-filter: blur(5px);
+      transition: opacity 0.3s ease;
+    }
+    
+    .alert-danger strong {
+      font-size: 1.1em;
+      margin-bottom: 5px;
+      display: block;
+    }
+    
+    .alert-danger p {
+      margin-bottom: 0;
+      font-size: 0.9em;
+    }
+    
+    .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    
+    .fade {
+      opacity: 0;
+      transition: opacity 0.15s linear;
+    }
+  </style>
+    
   </head>
   <body>
     <main>
@@ -1399,39 +1435,4 @@
   }
 </script>
   </body>
-  <style>
-  /* 错误通知样式 */
-  .alert-danger {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
-    padding: 15px;
-    border-radius: 8px;
-    opacity: 0.95;
-    backdrop-filter: blur(5px);
-    transition: opacity 0.3s ease;
-  }
-  
-  .alert-danger strong {
-    font-size: 1.1em;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  .alert-danger p {
-    margin-bottom: 0;
-    font-size: 0.9em;
-  }
-  
-  .btn-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .fade {
-    opacity: 0;
-    transition: opacity 0.15s linear;
-  }
-</style>
 </html>
