@@ -2,14 +2,14 @@
 
 # Define toolkit paths
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin:/usrdata/root/bin
-GITUSER="iamromulan"
+GITUSER="YV-z"
 REPONAME="quectel-rgmii-toolkit"
 GITTREE="SDXLEMUR"
 GITMAINTREE="SDXLEMUR"
 GITDEVTREE="development-SDXLEMUR"
-GITROOT="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
-GITROOTMAIN="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
-GITROOTDEV="https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
+GITROOT="https://ghfast.top/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITTREE"
+GITROOTMAIN="https://ghfast.top/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITMAINTREE"
+GITROOTDEV="https://ghfast.top/https://raw.githubusercontent.com/$GITUSER/$REPONAME/$GITDEVTREE"
 TMP_DIR="/tmp"
 USRDATA_DIR="/usrdata"
 SOCAT_AT_DIR="/usrdata/socat-at-bridge"
@@ -750,7 +750,7 @@ install_sshd() {
 
 ARCH=$(uname -a)
 if echo "$ARCH" | grep -q "aarch64"; then
-    cd /tmp && wget -O RM55x_rcPCIe_toolkit.sh https://raw.githubusercontent.com/iamromulan/quectel-rgmii-toolkit/SDXPINN/RM55x_rcPCIe_toolkit.sh && chmod +x RM55x_rcPCIe_toolkit.sh && ./RM55x_rcPCIe_toolkit.sh && cd /
+    cd /tmp && wget -O RM55x_rcPCIe_toolkit.sh https://ghfast.top/https://raw.githubusercontent.com/iamromulan/quectel-rgmii-toolkit/SDXPINN/RM55x_rcPCIe_toolkit.sh && chmod +x RM55x_rcPCIe_toolkit.sh && ./RM55x_rcPCIe_toolkit.sh && cd /
     exit 0
 elif echo "$ARCH" | grep -q "armv7l"; then
     # Continue if architecture is armv7l
