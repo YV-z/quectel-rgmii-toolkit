@@ -680,19 +680,53 @@
 
                   console.log(lines);
 
-                  // --- Temperature ---
-                  // find this example value from lines "+QTEMP:"cpuss-0-usr","50"
-                  try {
-                    this.temperature = lines
-                      .find((line) => line.includes('+QTEMP:"cpuss-0-usr"'))
-                      .split(",")[1]
-                      .replace(/"/g, "");
-                  } catch (error) {
-                    this.temperature = lines
-                      .find((line) => line.includes('+QTEMP:"cpu0-a7-usr"'))
-                      .split(",")[1]
-                      .replace(/"/g, "");
+// =============================================
+              // 温度获取部分 - 替换为更健壮的实现
+              // =============================================
+              // 注释掉原有的温度获取代码
+              /*
+              try {
+                this.temperature = lines
+                  .find((line) => line.includes('+QTEMP:"cpuss-0-usr"'))
+                  .split(",")[1]
+                  .replace(/"/g, "");
+              } catch (error) {
+                this.temperature = lines
+                  .find((line) => line.includes('+QTEMP:"cpu0-a7-usr"'))
+                  .split(",")[1]
+                  .replace(/"/g, "");
+              }
+              */
+              
+              // 替换为新的健壮实现
+              try {
+                // 尝试多种可能的温度行格式
+                const tempLine1 = lines.find(line => line.includes('+QTEMP:"cpuss-0-usr"'));
+                const tempLine2 = lines.find(line => line.includes('+QTEMP:"cpu0-a7-usr"'));
+                const tempLineGeneric = lines.find(line => line.includes('+QTEMP:'));
+                
+                if (tempLine1) {
+                  this.temperature = tempLine1.split(",")[1].replace(/"/g, "");
+                } else if (tempLine2) {
+                  this.temperature = tempLine2.split(",")[1].replace(/"/g, "");
+                } else if (tempLineGeneric) {
+                  // 提取第一个数字值
+                  const match = tempLineGeneric.match(/\d+/);
+                  if (match) {
+                    this.temperature = match[0];
+                  } else {
+                    this.temperature = "N/A";
                   }
+                } else {
+                  this.temperature = "N/A";
+                }
+              } catch (error) {
+                console.error("Error parsing temperature:", error);
+                this.temperature = "N/A";
+              }
+              // =============================================
+              // 温度获取部分结束
+              // =============================================
 
                   // --- SIM Status ---
                   // find this example value from lines "+QSIMSTAT: 0,1"
