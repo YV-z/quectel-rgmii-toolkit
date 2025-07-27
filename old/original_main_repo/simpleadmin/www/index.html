@@ -662,42 +662,53 @@
       fetchAllInfo() {
         console.log("[INFO] Starting data fetch process");
         
-        // 构建AT命令
-        this.atcmd = 'AT+QTEMP;+QUIMSLOT?;+QSPN;+CGCONTRDP=1;+QMAP="WWANIP";+QENG="servingcell";+QCAINFO;+QSIMSTAT?;+CSQ;+QGDNRCNT?;+QGDCNT?';
+        // 构建更简洁的AT命令
+        this.atcmd = 'AT+QTEMP;+QUIMSLOT?;+QSPN;+CGCONTRDP=1;+QENG="servingcell";+QCAINFO;+QSIMSTAT?;+CSQ';
         console.log("[DEBUG] AT command: " + this.atcmd);
         
-        // 发送请求
-        fetch(
-          "/cgi-bin/get_atcommand?" +
-            new URLSearchParams({
-              atcmd: this.atcmd,
-            })
-        )
+        // 使用更安全的API端点
+        const apiEndpoint = "/api/network-info";
+        
+        fetch(apiEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ atcmd: this.atcmd })
+        })
         .then((response) => {
-          console.log("[DEBUG] Received HTTP response");
-          
-          // 检查响应状态
           if (!response.ok) {
-            console.error("[ERROR] HTTP error: " + response.status);
-            throw new Error("HTTP error " + response.status);
+            throw new Error(`HTTP error! status: ${response.status}`);
           }
-          
           return response.text();
         })
         .then((data) => {
           console.log("[DEBUG] Raw response data received");
-          console.log("[TRACE] Response data: " + data.substring(0, 200) + (data.length > 200 ? "..." : ""));
           
-          if (data.includes("ERROR")) {
+          // 更健壮的错误检测
+          if (data.includes("\nERROR") || data.startsWith("ERROR")) {
             console.error("[ERROR] AT command returned ERROR");
-            this.activeSim = "Something went wrong.";
+            
+            // 尝试从错误响应中提取有用信息
+            const errorLines = data.split("\n");
+            const firstErrorLine = errorLines.find(line => line.includes("ERROR"));
+            
+            if (firstErrorLine) {
+              console.error("[ERROR] AT command error details:", firstErrorLine);
+              this.activeSim = `AT Error: ${firstErrorLine.substring(0, 50)}`;
+            } else {
+              this.activeSim = "AT command failed";
+            }
+            
             return;
           }
           
           const rawdata = data;
-          const lines = rawdata.split("\n");
-          console.log("[DEBUG] Parsed response into " + lines.length + " lines");
+          const lines = rawdata.split("\n")
+            .map(line => line.trim())
+            .filter(line => line.length > 0);
           
+          console.log("[DEBUG] Parsed response into " + lines.length + " lines");
           // ======================
           // 数据解析部分
           // ======================
@@ -1238,109 +1249,150 @@
           
           console.log("[INFO] Data parsing completed successfully");
         })
-        .catch((error) => {
-          console.error("[ERROR] Fetch request failed: " + error.message);
-          this.activeSim = "Network error";
+                .catch((error) => {
+          console.error("[ERROR] Fetch request failed:", error);
+          
+          // 详细的错误分类和处理
+          let errorMessage = "网络错误";
+          let detailedMessage = "请检查网络连接";
+          
+          // 检测广告拦截器
+          if (error.message.includes("Blocked by AdGuard") || 
+              error.message.includes("fetchError") || 
+              error.message.includes("AdGuard")) {
+            errorMessage = "请求被广告拦截器阻止";
+            detailedMessage = "请禁用广告拦截器或添加本站到白名单";
+            console.warn("[WARN] 广告拦截器阻止了请求");
+          }
+          // 检测网络连接问题
+          else if (error.message.includes("Failed to fetch") || 
+                   error.message.includes("NetworkError") || 
+                   error.message.includes("net::ERR_")) {
+            errorMessage = "网络连接失败";
+            detailedMessage = "请检查您的网络连接";
+            console.warn("[WARN] 网络连接失败");
+          }
+          // 检测超时问题
+          else if (error.name === "AbortError" || 
+                   error.message.includes("timeout")) {
+            errorMessage = "请求超时";
+            detailedMessage = "服务器响应时间过长，请稍后重试";
+            console.warn("[WARN] 请求超时");
+          }
+          // 检测跨域问题
+          else if (error.message.includes("CORS") || 
+                   error.message.includes("cross-origin")) {
+            errorMessage = "跨域请求被阻止";
+            detailedMessage = "请检查服务器CORS配置";
+            console.warn("[WARN] 跨域请求问题");
+          }
+          // 其他未知错误
+          else {
+            errorMessage = "未知错误";
+            detailedMessage = `错误代码: ${error.name || "N/A"}`;
+            console.warn("[WARN] 未知错误类型");
+          }
+          
+          // 更新状态变量显示错误信息
+          this.activeSim = errorMessage;
+          this.networkProvider = detailedMessage;
+          
+          // 设置关键数据点的默认值
+          this.temperature = "N/A";
+          this.simStatus = "N/A";
+          this.signalPercentage = "0";
+          this.signalAssessment = "无信号";
+          this.internetConnectionStatus = "断开连接";
+          
+          // 在控制台显示完整错误信息
+          console.error("[ERROR DETAILS] 错误名称:", error.name);
+          console.error("[ERROR DETAILS] 错误消息:", error.message);
+          console.error("[ERROR DETAILS] 错误堆栈:", error.stack);
+          
+          // 在页面上显示详细错误信息（可选）
+          this.showErrorNotification(errorMessage, detailedMessage);
         });
       },
-
-      // 辅助方法
-      bytesToSize(bytes) {
-        const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-        if (bytes == 0) return "0 Byte";
-        const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-        return Math.round(bytes / Math.pow(1024, i), 2) + " " + sizes[i];
-      },
-
-      calculate_lte_bw(lte_bw) {
-        const BANDWIDTH_MAP = {
-          0: 1.4, 1: 3, 2: 5, 3: 10, 4: 15, 5: 20, 6: 40, 7: 80, 8: 100, 9: 200
-        };
-        return BANDWIDTH_MAP[lte_bw] || "Unknown";
-      },
-
-      calculate_nr_bw(nr_bw) {
-        const NR_BANDWIDTH_MAP = {
-          0: 5, 1: 10, 2: 15, 3: 20, 4: 25, 5: 30, 6: 40, 7: 50, 
-          8: 60, 9: 70, 10: 80, 11: 90, 12: 100, 13: 200, 14: 400
-        };
-        return NR_BANDWIDTH_MAP[nr_bw] || "Unknown";
-      },
-
-      calculateRSRPPercentage(rsrp) {
-        let RSRP_min = -135;
-        let RSRP_max = -65;
-
-        if (isNaN(rsrp) || rsrp < -140) {
-          return 0;
+      
+      // 显示错误通知的方法
+      showErrorNotification(title, message) {
+        // 检查是否已存在错误通知
+        const existingNotification = document.getElementById('error-notification');
+        if (existingNotification) {
+          existingNotification.remove();
         }
-
-        let percentage = ((rsrp - RSRP_min) / (RSRP_max - RSRP_min)) * 100;
-        percentage = Math.max(15, Math.min(100, percentage));
-        return Math.round(percentage);
+        
+        // 创建通知元素
+        const notification = document.createElement('div');
+        notification.id = 'error-notification';
+        notification.className = 'alert alert-danger alert-dismissible fade show';
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.right = '20px';
+        notification.style.zIndex = '10000';
+        notification.style.maxWidth = '400px';
+        notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+        
+        notification.innerHTML = `
+          <strong>${title}</strong>
+          <p class="mb-0">${message}</p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        
+        // 添加到页面
+        document.body.appendChild(notification);
+        
+        // 自动关闭通知
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.classList.add('fade');
+            setTimeout(() => {
+              if (notification.parentNode) {
+                notification.remove();
+              }
+            }, 150);
+          }
+        }, 5000);
       },
-
-      calculateRSRQPercentage(rsrq) {
-        let RSRQ_min = -20;
-        let RSRQ_max = -8;
-
-        if (isNaN(rsrq) || rsrq < -20) {
-          return 0;
-        }
-
-        let percentage = ((rsrq - RSRQ_min) / (RSRQ_max - RSRQ_min)) * 100;
-        percentage = Math.max(15, Math.min(100, percentage));
-        return Math.round(percentage);
-      },
-
-      calculateSINRPercentage(sinr) {
-        let SINR_min = -10;
-        let SINR_max = 35;
-
-        if (isNaN(sinr) || sinr < -10) {
-          return 0;
-        }
-
-        let percentage = ((sinr - SINR_min) / (SINR_max - SINR_min)) * 100;
-        percentage = Math.max(15, Math.min(100, percentage));
-        return Math.round(percentage);
-      },
-
-      calculateSignalPercentage(rsrpPercentage, sinrPercentage) {
-        let average = (rsrpPercentage + sinrPercentage) / 2;
-        return Math.round(average);
-      },
-
-      signalQuality(percentage) {
-        if (percentage >= 80) return "Excellent";
-        if (percentage >= 60) return "Good";
-        if (percentage >= 40) return "Fair";
-        if (percentage >= 0) return "Poor";
-        return "No Signal";
-      },
-
-      // 初始化方法
+      
+      // 初始化方法 - 添加重试机制
       init() {
         console.log("[INFO] Initializing application");
         
-        // 从本地存储获取刷新率
-        const storedRefreshRate = localStorage.getItem("refreshRate");
-        if (storedRefreshRate) {
-          this.refreshRate = parseInt(storedRefreshRate);
-          console.log("[INFO] Using stored refresh rate: " + this.refreshRate + "s");
-        } else {
-          console.log("[INFO] Using default refresh rate: " + this.refreshRate + "s");
-        }
+        const maxRetries = 3;
+        let retryCount = 0;
         
-        // 初始数据获取
-        this.fetchAllInfo();
-        
-        // 设置定时刷新
-        this.intervalId = setInterval(() => {
-          console.log("[INFO] Refreshing data...");
+        const fetchWithRetry = () => {
           this.fetchAllInfo();
-          this.lastUpdate = new Date().toLocaleString();
-        }, this.refreshRate * 1000);
+          
+          this.intervalId = setInterval(() => {
+            console.log("[INFO] Refreshing data...");
+            
+            // 重置重试计数器
+            retryCount = 0;
+            
+            const retryFetch = () => {
+              this.fetchAllInfo();
+              retryCount++;
+              
+              if (retryCount >= maxRetries) {
+                console.error("[ERROR] Max retries reached. Stopping refresh.");
+                clearInterval(this.intervalId);
+                this.activeSim = "连接失败，请刷新页面";
+                this.showErrorNotification(
+                  "连接失败", 
+                  "已达到最大重试次数，请刷新页面或检查网络连接"
+                );
+              }
+            };
+            
+            // 初始请求
+            retryFetch();
+            
+          }, this.refreshRate * 1000);
+        };
+        
+        fetchWithRetry();
       }
     };
   }
