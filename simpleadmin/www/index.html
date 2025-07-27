@@ -1,352 +1,246 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Simple Admin</title>
-    <!-- <link
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Admin</title>
+  <!-- <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     /> -->
-    <!-- Import all the bootstrap css files from css folder -->
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <!-- Import all the bootstrap css files from css folder -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
 
-    <!-- Logo -->
-    <link rel="simpleadmin-logo" href="favicon.ico" />
+  <!-- Logo -->
+  <link rel="simpleadmin-logo" href="favicon.ico" />
 
-    <!--  Import BootStrap Javascript -->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/alpinejs.min.js" defer></script>
-    <!-- 错误通知的样式 -->
-  <style>
-    .alert-danger {
-      background-color: #f8d7da;
-      border-color: #f5c6cb;
-      color: #721c24;
-      padding: 15px;
-      border-radius: 8px;
-      opacity: 0.95;
-      backdrop-filter: blur(5px);
-      transition: opacity 0.3s ease;
-    }
-    
-    .alert-danger strong {
-      font-size: 1.1em;
-      margin-bottom: 5px;
-      display: block;
-    }
-    
-    .alert-danger p {
-      margin-bottom: 0;
-      font-size: 0.9em;
-    }
-    
-    .btn-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-    
-    .fade {
-      opacity: 0;
-      transition: opacity 0.15s linear;
-    }
-  </style>
-    
-  </head>
-  <body>
-    <main>
-      <div class="container my-4" x-data="processAllInfos()">
-        <nav class="navbar navbar-expand-lg mt-2">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="/"
-              ><span class="mb-0 h4">Simple Admin</span></a
-            >
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarText"
-              aria-controls="navbarText"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/"
-                    >Home</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="network.html">Simple Network</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/scanner.html">Simple Scan</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/settings.html">Simple Settings</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/sms.html">SMS</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/console">Console</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/deviceinfo.html"
-                    >Device Information</a
-                  >
-                </li>
-              </ul>
-              <span class="navbar-text">
-                <button class="btn btn-link text-reset" id="darkModeToggle">
-                  Dark Mode
-                </button>
-              </span>
-            </div>
+  <!--  Import BootStrap Javascript -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/alpinejs.min.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <div class="container my-4" x-data="processAllInfos()">
+      <nav class="navbar navbar-expand-lg mt-2">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"><span class="mb-0 h4">Simple Admin</span></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="network.html">Simple Network</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/scanner.html">Simple Scan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/settings.html">Simple Settings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/sms.html">SMS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/console">Console</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/deviceinfo.html">Device Information</a>
+              </li>
+            </ul>
+            <span class="navbar-text">
+              <button class="btn btn-link text-reset" id="darkModeToggle">
+                Dark Mode
+              </button>
+            </span>
           </div>
-        </nav>
+        </div>
+      </nav>
 
-        <div class="row align-items-center mt-5 gap-md-3 gap-2">
-          <div class="col align-self-center">
-            <div class="card">
-              <div
-                class="card-body d-flex flex-column align-items-center justify-content-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 320 512"
-                  height="85"
-                  width="85"
-                >
-                  <path
-                    fill="#fdb53c"
-                    d="M160 64c-26.5 0-48 21.5-48 48V276.5c0 17.3-7.1 31.9-15.3 42.5C86.2 332.6 80 349.5 80 368c0 44.2 35.8 80 80 80s80-35.8 80-80c0-18.5-6.2-35.4-16.7-48.9c-8.2-10.6-15.3-25.2-15.3-42.5V112c0-26.5-21.5-48-48-48zM48 112C48 50.2 98.1 0 160 0s112 50.1 112 112V276.5c0 .1 .1 .3 .2 .6c.2 .6 .8 1.6 1.7 2.8c18.9 24.4 30.1 55 30.1 88.1c0 79.5-64.5 144-144 144S16 447.5 16 368c0-33.2 11.2-63.8 30.1-88.1c.9-1.2 1.5-2.2 1.7-2.8c.1-.3 .2-.5 .2-.6V112zM208 368c0 26.5-21.5 48-48 48s-48-21.5-48-48c0-20.9 13.4-38.7 32-45.3V272c0-8.8 7.2-16 16-16s16 7.2 16 16v50.7c18.6 6.6 32 24.4 32 45.3z"
-                  />
-                </svg>
-                <h1
-                  class="card-text mt-4"
-                  x-text="temperature + ' &deg;C'"
-                ></h1>
-              </div>
-              <div class="card-footer">Temperature</div>
+      <div class="row align-items-center mt-5 gap-md-3 gap-2">
+        <div class="col align-self-center">
+          <div class="card">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="85" width="85">
+                <path fill="#fdb53c"
+                  d="M160 64c-26.5 0-48 21.5-48 48V276.5c0 17.3-7.1 31.9-15.3 42.5C86.2 332.6 80 349.5 80 368c0 44.2 35.8 80 80 80s80-35.8 80-80c0-18.5-6.2-35.4-16.7-48.9c-8.2-10.6-15.3-25.2-15.3-42.5V112c0-26.5-21.5-48-48-48zM48 112C48 50.2 98.1 0 160 0s112 50.1 112 112V276.5c0 .1 .1 .3 .2 .6c.2 .6 .8 1.6 1.7 2.8c18.9 24.4 30.1 55 30.1 88.1c0 79.5-64.5 144-144 144S16 447.5 16 368c0-33.2 11.2-63.8 30.1-88.1c.9-1.2 1.5-2.2 1.7-2.8c.1-.3 .2-.5 .2-.6V112zM208 368c0 26.5-21.5 48-48 48s-48-21.5-48-48c0-20.9 13.4-38.7 32-45.3V272c0-8.8 7.2-16 16-16s16 7.2 16 16v50.7c18.6 6.6 32 24.4 32 45.3z" />
+              </svg>
+              <h1 class="card-text mt-4" x-text="temperature + ' &deg;C'"></h1>
             </div>
+            <div class="card-footer">Temperature</div>
           </div>
+        </div>
 
-          <div class="col align-self-center">
-            <div class="card">
-              <div
-                class="card-body d-flex flex-column align-items-center justify-content-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 384 512"
-                  height="85"
-                  width="85"
-                >
-                  <path
-                    fill="#6a46d8"
-                    d="M64 0H242.7c17 0 33.3 6.7 45.3 18.7L365.3 96c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0zM96 192c-17.7 0-32 14.3-32 32v32h64V192H96zM64 352h80 96 80V288H240 144 64v64zM320 224c0-17.7-14.3-32-32-32H256v64h64V224zM160 192v64h64V192H160zM288 448c17.7 0 32-14.3 32-32V384H256v64h32zM160 384v64h64V384H160zM64 416c0 17.7 14.3 32 32 32h32V384H64v32z"
-                  />
-                </svg>
-                <h1 class="card-text mt-4" x-text="simStatus"></h1>
-              </div>
-              <div class="card-footer">SIM Status</div>
+        <div class="col align-self-center">
+          <div class="card">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" height="85" width="85">
+                <path fill="#6a46d8"
+                  d="M64 0H242.7c17 0 33.3 6.7 45.3 18.7L365.3 96c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0zM96 192c-17.7 0-32 14.3-32 32v32h64V192H96zM64 352h80 96 80V288H240 144 64v64zM320 224c0-17.7-14.3-32-32-32H256v64h64V224zM160 192v64h64V192H160zM288 448c17.7 0 32-14.3 32-32V384H256v64h32zM160 384v64h64V384H160zM64 416c0 17.7 14.3 32 32 32h32V384H64v32z" />
+              </svg>
+              <h1 class="card-text mt-4" x-text="simStatus"></h1>
             </div>
+            <div class="card-footer">SIM Status</div>
           </div>
+        </div>
 
-          <div class="col align-self-center">
-            <div class="card">
-              <div
-                class="card-body d-flex flex-column align-items-center justify-content-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 512"
-                  height="85"
-                  width="85"
-                >
-                  <path
-                    fill="#2fa7fb"
-                    d="M576 0c17.7 0 32 14.3 32 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V32c0-17.7 14.3-32 32-32zM448 96c17.7 0 32 14.3 32 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V128c0-17.7 14.3-32 32-32zM352 224V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32s32 14.3 32 32zM192 288c17.7 0 32 14.3 32 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32zM96 416v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V416c0-17.7 14.3-32 32-32s32 14.3 32 32z"
-                  />
-                </svg>
-                <h1 class="card-text mt-4" x-text="signalPercentage + '%'"></h1>
-              </div>
-              <div class="card-footer">Signal Percentage</div>
+        <div class="col align-self-center">
+          <div class="card">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" height="85" width="85">
+                <path fill="#2fa7fb"
+                  d="M576 0c17.7 0 32 14.3 32 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V32c0-17.7 14.3-32 32-32zM448 96c17.7 0 32 14.3 32 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V128c0-17.7 14.3-32 32-32zM352 224V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32s32 14.3 32 32zM192 288c17.7 0 32 14.3 32 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32zM96 416v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V416c0-17.7 14.3-32 32-32s32 14.3 32 32z" />
+              </svg>
+              <h1 class="card-text mt-4" x-text="signalPercentage + '%'"></h1>
             </div>
+            <div class="card-footer">Signal Percentage</div>
           </div>
+        </div>
 
-          <div class="col align-self-center">
-            <div class="card">
-              <div
-                class="card-body d-flex flex-column align-items-center justify-content-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 512"
-                  height="85"
-                  width="85"
-                >
-                  <path
-                    fill="#20c0ae"
-                    d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"
-                  />
-                </svg>
-                <h1
-                  class="card-text mt-4"
-                  x-text="internetConnectionStatus"
-                ></h1>
+        <div class="col align-self-center">
+          <div class="card">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" height="85" width="85">
+                <path fill="#20c0ae"
+                  d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z" />
+              </svg>
+              <h1 class="card-text mt-4" x-text="internetConnectionStatus"></h1>
+            </div>
+            <div class="card-footer">Internet Connection</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5 gap-3">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">Network Information</div>
+            <div class="card-body">
+              <div class="card-text table-responsive-sm">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Active Sim</th>
+                      <td x-text="activeSim"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Network Provider</th>
+                      <td x-text="networkProvider"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">MCCMNC</th>
+                      <td x-text="mccmnc"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">APN</th>
+                      <td x-text="apn"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Network Mode</th>
+                      <td x-text="networkMode"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bands</th>
+                      <td x-text="bands"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bandwidth</th>
+                      <td x-text="bandwidth"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">E/ARFCN<sup>4G/5G</sup></th>
+                      <td x-text="earfcns"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">PCI</th>
+                      <td x-show="sccPCI != '-'" x-text="pccPCI + ', ' + sccPCI"></td>
+
+                      <td x-show="sccPCI == '-'" x-text="pccPCI"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">IPv<sup>4</sup></th>
+                      <td x-text="ipv4"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">IPv<sup>6</sup></th>
+                      <td x-text="ipv6"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Uptime</th>
+                      <td x-text="uptime"></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="card-footer">Internet Connection</div>
+            </div>
+            <div class="card-footer">
+              <div class="row row-cols-2">
+                <div class="col">
+                  <p class="btn">Refresh Rate (min 3s)</p>
+                </div>
+                <div class="col">
+                  <div class="input-group">
+                    <input x-model="newRefreshRate" class="form-control" type="number" min="3" max="60"
+                      x-bind:placeholder="refreshRate + 's'" />
+                    <button @click="updateRefreshRate()" class="btn btn-outline-secondary" type="button">
+                      Set
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="row mt-5 gap-3">
-          <div class="col">
-            <div class="card">
-              <div class="card-header">Network Information</div>
-              <div class="card-body">
-                <div class="card-text table-responsive-sm">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <th scope="row">Active Sim</th>
-                        <td x-text="activeSim"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Network Provider</th>
-                        <td x-text="networkProvider"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">MCCMNC</th>
-                        <td x-text="mccmnc"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">APN</th>
-                        <td x-text="apn"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Network Mode</th>
-                        <td x-text="networkMode"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Bands</th>
-                        <td x-text="bands"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Bandwidth</th>
-                        <td x-text="bandwidth"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">E/ARFCN<sup>4G/5G</sup></th>
-                        <td x-text="earfcns"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">PCI</th>
-                        <td
-                          x-show="sccPCI != '-'"
-                          x-text="pccPCI + ', ' + sccPCI"
-                        ></td>
-
-                        <td x-show="sccPCI == '-'" x-text="pccPCI"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">IPv<sup>4</sup></th>
-                        <td x-text="ipv4"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">IPv<sup>6</sup></th>
-                        <td x-text="ipv6"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Uptime</th>
-                        <td x-text="uptime"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="card-footer">
-                <div class="row row-cols-2">
-                  <div class="col">
-                    <p class="btn">Refresh Rate (min 3s)</p>
-                  </div>
-                  <div class="col">
-                    <div class="input-group">
-                      <input
-                        x-model="newRefreshRate"
-                        class="form-control"
-                        type="number"
-                        min="3"
-                        max="60"
-                        x-bind:placeholder="refreshRate + 's'"
-                      />
-                      <button
-                        @click="updateRefreshRate()"
-                        class="btn btn-outline-secondary"
-                        type="button"
-                      >
-                        Set
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <div class="card-header">Signal Information</div>
-              <div class="card-body">
-                <div class="card-text table-responsive-sm">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <th scope="row">Assessment</th>
-                        <td x-text="signalAssessment"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Traffic Stats</th>
-                        <td
-                          x-text="downloadStat + ' DL / ' + uploadStat + ' UL'"
-                        ></td>
-                      </tr>
-                      <tr x-show="csq != 'NR-SA Mode'">
-                        <th scope="row">CSQ</th>
-                        <td x-show="csq != '-'" x-text="csq"></td>
-                        <td x-show="csq == '-'" class="fst-italic">None</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">CELL ID</th>
-                        <td x-text="cellID"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">eNB ID <sup>4G/5G</sup></th>
-                        <td x-text="eNBID"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">TAC<sup>4G/5G</sup></th>
-                        <td x-text="tac"></td>
-                      </tr>
-                      <!-- <tr x-show="rssi != '-'">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">Signal Information</div>
+            <div class="card-body">
+              <div class="card-text table-responsive-sm">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Assessment</th>
+                      <td x-text="signalAssessment"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Traffic Stats</th>
+                      <td x-text="downloadStat + ' DL / ' + uploadStat + ' UL'"></td>
+                    </tr>
+                    <tr x-show="csq != 'NR-SA Mode'">
+                      <th scope="row">CSQ</th>
+                      <td x-show="csq != '-'" x-text="csq"></td>
+                      <td x-show="csq == '-'" class="fst-italic">None</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">CELL ID</th>
+                      <td x-text="cellID"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">eNB ID <sup>4G/5G</sup></th>
+                      <td x-text="eNBID"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">TAC<sup>4G/5G</sup></th>
+                      <td x-text="tac"></td>
+                    </tr>
+                    <!-- <tr x-show="rssi != '-'">
                         <th scope="row">RSSI<sup>4G</sup></th>
                         <td x-show="rssi != '-'" x-text="rssi"></td>
                         <td x-show="rssi == '-'" class="fst-italic">None</td>
                       </tr> -->
-                      <tr x-show="rsrqLTE != '-'">
-                        <th scope="row">SS_RSRQ<sup>4G</sup></th>
-                        <td
-                          class="gap-4 align-items-center"
-                          x-data="{ getProgressBarClass: function() {
+                    <tr x-show="rsrqLTE != '-'">
+                      <th scope="row">SS_RSRQ<sup>4G</sup></th>
+                      <td class="gap-4 align-items-center" x-data="{ getProgressBarClass: function() {
                           // Remove the percentage sign and convert to integer
                           var percentage = parseInt(this.rsrqLTEPercentage);
                           
@@ -357,40 +251,23 @@
                           } else {
                               return 'progress-bar bg-danger is-medium';
                           }
-                      } }"
-                        >
-                          <div
-                            x-show="rsrqLTE != '-' && rsrqLTEPercentage != '0'"
-                            class="progress w-100"
-                            role="progressbar"
-                            aria-label="RSRQ BAR"
-                            :aria-valuenow="rsrqLTEPercentage"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style="height: 18px"
-                          >
-                            <div
-                              :class="getProgressBarClass()"
-                              :style="'width: ' + rsrqLTEPercentage + '%'"
-                            >
-                              <span
-                                x-text="rsrqLTE + ' / ' +  rsrqLTEPercentage + '%'"
-                              ></span>
-                            </div>
+                      } }">
+                        <div x-show="rsrqLTE != '-' && rsrqLTEPercentage != '0'" class="progress w-100"
+                          role="progressbar" aria-label="RSRQ BAR" :aria-valuenow="rsrqLTEPercentage" aria-valuemin="0"
+                          aria-valuemax="100" style="height: 18px">
+                          <div :class="getProgressBarClass()" :style="'width: ' + rsrqLTEPercentage + '%'">
+                            <span x-text="rsrqLTE + ' / ' +  rsrqLTEPercentage + '%'"></span>
                           </div>
-                          <span
-                            x-show="rsrqLTEPercentage == '0'"
-                            x-text="rsrqLTE"
-                          ></span>
-                          <span x-show="rsrqLTE == '-'" class="fst-italic">
-                            None
-                          </span>
-                        </td>
-                      </tr>
-                      <tr x-show="rsrqNR != '-'">
-                        <th scope="row">SS_RSRQ<sup>5G</sup></th>
-                        <td
-                          x-data="{ getProgressBarClass: function() {
+                        </div>
+                        <span x-show="rsrqLTEPercentage == '0'" x-text="rsrqLTE"></span>
+                        <span x-show="rsrqLTE == '-'" class="fst-italic">
+                          None
+                        </span>
+                      </td>
+                    </tr>
+                    <tr x-show="rsrqNR != '-'">
+                      <th scope="row">SS_RSRQ<sup>5G</sup></th>
+                      <td x-data="{ getProgressBarClass: function() {
                           // Remove the percentage sign and convert to integer
                           var percentage = parseInt(this.rsrqNRPercentage);
                           
@@ -401,41 +278,23 @@
                           } else {
                               return 'progress-bar bg-danger is-medium';
                           }
-                      } }"
-                        >
-                          <div
-                            x-show="rsrqNR != '-' && rsrqNRPercentage != '0'"
-                            class="progress w-100"
-                            role="progressbar"
-                            aria-label="RSRQ BAR"
-                            :aria-valuenow="rsrqNRPercentage"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style="height: 18px"
-                          >
-                            <div
-                              :class="getProgressBarClass()"
-                              :style="'width: ' + rsrqNRPercentage + '%'"
-                            >
-                              <span
-                                x-text="rsrqNR + ' / ' + rsrqNRPercentage + '%'"
-                              ></span>
-                            </div>
+                      } }">
+                        <div x-show="rsrqNR != '-' && rsrqNRPercentage != '0'" class="progress w-100" role="progressbar"
+                          aria-label="RSRQ BAR" :aria-valuenow="rsrqNRPercentage" aria-valuemin="0" aria-valuemax="100"
+                          style="height: 18px">
+                          <div :class="getProgressBarClass()" :style="'width: ' + rsrqNRPercentage + '%'">
+                            <span x-text="rsrqNR + ' / ' + rsrqNRPercentage + '%'"></span>
                           </div>
-                          <span
-                            x-show="rsrqNRPercentage == '0'"
-                            x-text="rsrqNR"
-                          ></span>
-                          <span x-show="rsrqNR == '-'" class="fst-italic">
-                            None
-                          </span>
-                        </td>
-                      </tr>
-                      <tr x-show="rsrpLTE != '-'">
-                        <th scope="row">RSRP<sup>4G</sup></th>
-                        <td
-                          class="gap-4 align-items-center"
-                          x-data="{
+                        </div>
+                        <span x-show="rsrqNRPercentage == '0'" x-text="rsrqNR"></span>
+                        <span x-show="rsrqNR == '-'" class="fst-italic">
+                          None
+                        </span>
+                      </td>
+                    </tr>
+                    <tr x-show="rsrpLTE != '-'">
+                      <th scope="row">RSRP<sup>4G</sup></th>
+                      <td class="gap-4 align-items-center" x-data="{
                           getProgressBarClass: function() {
                               // Remove the percentage sign and convert to integer
                               var percentage = parseInt(this.rsrpLTEPercentage);
@@ -448,41 +307,23 @@
                                   return 'progress-bar bg-danger is-medium';
                               }
                           }
-                        }"
-                        >
-                          <div
-                            x-show="rsrpLTE != '-' && rsrpLTEPercentage != '0'"
-                            class="progress w-100"
-                            role="progressbar"
-                            aria-label="RSRP BAR"
-                            :aria-valuenow="rsrpLTEPercentage"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style="height: 18px"
-                          >
-                            <div
-                              :class="getProgressBarClass()"
-                              :style="'width: ' + rsrpLTEPercentage + '%'"
-                            >
-                              <span
-                                x-text="rsrpLTE + ' / ' + rsrpLTEPercentage + '%'"
-                              ></span>
-                            </div>
+                        }">
+                        <div x-show="rsrpLTE != '-' && rsrpLTEPercentage != '0'" class="progress w-100"
+                          role="progressbar" aria-label="RSRP BAR" :aria-valuenow="rsrpLTEPercentage" aria-valuemin="0"
+                          aria-valuemax="100" style="height: 18px">
+                          <div :class="getProgressBarClass()" :style="'width: ' + rsrpLTEPercentage + '%'">
+                            <span x-text="rsrpLTE + ' / ' + rsrpLTEPercentage + '%'"></span>
                           </div>
-                          <span
-                            x-show="rsrpLTEPercentage == '0'"
-                            x-text="rsrpLTE"
-                          ></span>
-                          <span x-show="rsrpLTE == '-'" class="fst-italic">
-                            None
-                          </span>
-                        </td>
-                      </tr>
-                      <tr x-show="rsrpNR != '-'">
-                        <th scope="row">SS_RSRP<sup>5G</sup></th>
-                        <td
-                          class="gap-4 align-items-center"
-                          x-data="{
+                        </div>
+                        <span x-show="rsrpLTEPercentage == '0'" x-text="rsrpLTE"></span>
+                        <span x-show="rsrpLTE == '-'" class="fst-italic">
+                          None
+                        </span>
+                      </td>
+                    </tr>
+                    <tr x-show="rsrpNR != '-'">
+                      <th scope="row">SS_RSRP<sup>5G</sup></th>
+                      <td class="gap-4 align-items-center" x-data="{
                           getProgressBarClass: function() {
                               // Remove the percentage sign and convert to integer
                               var percentage = parseInt(this.rsrpNRPercentage);
@@ -495,41 +336,23 @@
                                   return 'progress-bar bg-danger is-medium';
                               }
                           }
-                        }"
-                        >
-                          <div
-                            x-show="rsrpNR != '-' && rsrpNRPercentage != '0'"
-                            class="progress w-100"
-                            role="progressbar"
-                            aria-label="RSRP BAR"
-                            :aria-valuenow="rsrpNRPercentage"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style="height: 18px"
-                          >
-                            <div
-                              :class="getProgressBarClass()"
-                              :style="'width: ' + rsrpNRPercentage + '%'"
-                            >
-                              <span
-                                x-text="rsrpNR + ' / ' + rsrpNRPercentage + '%'"
-                              ></span>
-                            </div>
+                        }">
+                        <div x-show="rsrpNR != '-' && rsrpNRPercentage != '0'" class="progress w-100" role="progressbar"
+                          aria-label="RSRP BAR" :aria-valuenow="rsrpNRPercentage" aria-valuemin="0" aria-valuemax="100"
+                          style="height: 18px">
+                          <div :class="getProgressBarClass()" :style="'width: ' + rsrpNRPercentage + '%'">
+                            <span x-text="rsrpNR + ' / ' + rsrpNRPercentage + '%'"></span>
                           </div>
-                          <span
-                            x-show="rsrpNRPercentage == '0'"
-                            x-text="rsrpNR"
-                          ></span>
-                          <span x-show="rsrpNR == '-'" class="fst-italic">
-                            None
-                          </span>
-                        </td>
-                      </tr>
-                      <tr x-show="sinrLTE != '-'">
-                        <th scope="row">SINR<sup>4G</sup></th>
-                        <td
-                          class="gap-4 align-items-center"
-                          x-data="{
+                        </div>
+                        <span x-show="rsrpNRPercentage == '0'" x-text="rsrpNR"></span>
+                        <span x-show="rsrpNR == '-'" class="fst-italic">
+                          None
+                        </span>
+                      </td>
+                    </tr>
+                    <tr x-show="sinrLTE != '-'">
+                      <th scope="row">SINR<sup>4G</sup></th>
+                      <td class="gap-4 align-items-center" x-data="{
                           getProgressBarClass: function() {
                               // Remove the percentage sign and convert to integer
                               var percentage = parseInt(this.sinrLTEPercentage);
@@ -542,41 +365,23 @@
                                   return 'progress-bar bg-danger is-medium';
                               }
                           }
-                        }"
-                        >
-                          <div
-                            x-show="sinrLTE != '-' && sinrLTEPercentage != '0'"
-                            class="progress w-100"
-                            role="progressbar"
-                            aria-label="SINR BAR"
-                            :aria-valuenow="sinrLTEPercentage"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style="height: 18px"
-                          >
-                            <div
-                              :class="getProgressBarClass()"
-                              :style="'width: ' + sinrLTEPercentage +'%'"
-                            >
-                              <span
-                                x-text="sinrLTE + ' / ' + sinrLTEPercentage +'%'"
-                              ></span>
-                            </div>
+                        }">
+                        <div x-show="sinrLTE != '-' && sinrLTEPercentage != '0'" class="progress w-100"
+                          role="progressbar" aria-label="SINR BAR" :aria-valuenow="sinrLTEPercentage" aria-valuemin="0"
+                          aria-valuemax="100" style="height: 18px">
+                          <div :class="getProgressBarClass()" :style="'width: ' + sinrLTEPercentage +'%'">
+                            <span x-text="sinrLTE + ' / ' + sinrLTEPercentage +'%'"></span>
                           </div>
-                          <span
-                            x-text="sinrLTE"
-                            x-show="sinrLTEPercentage == '0'"
-                          ></span>
-                          <span x-show="sinrLTE == '-'" class="fst-italic">
-                            None
-                          </span>
-                        </td>
-                      </tr>
-                      <tr x-show="sinrNR != '-'">
-                        <th scope="row">SINR<sup>5G</sup></th>
-                        <td
-                          class="gap-4 align-items-center"
-                          x-data="{
+                        </div>
+                        <span x-text="sinrLTE" x-show="sinrLTEPercentage == '0'"></span>
+                        <span x-show="sinrLTE == '-'" class="fst-italic">
+                          None
+                        </span>
+                      </td>
+                    </tr>
+                    <tr x-show="sinrNR != '-'">
+                      <th scope="row">SINR<sup>5G</sup></th>
+                      <td class="gap-4 align-items-center" x-data="{
                           getProgressBarClass: function() {
                               // Remove the percentage sign and convert to integer
                               var percentage = parseInt(this.sinrNRPercentage);
@@ -589,52 +394,35 @@
                                   return 'progress-bar bg-danger is-medium';
                               }
                           }
-                        }"
-                        >
-                          <div
-                            x-show="sinrNR != '-' && sinrNRPercentage != '0'"
-                            class="progress w-100"
-                            role="progressbar"
-                            aria-label="SINR BAR"
-                            :aria-valuenow="sinrNRPercentage"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style="height: 18px"
-                          >
-                            <div
-                              :class="getProgressBarClass()"
-                              :style="'width: ' + sinrNRPercentage +'%'"
-                            >
-                              <span
-                                x-text="sinrNR + ' / ' + sinrNRPercentage +'%'"
-                              ></span>
-                            </div>
+                        }">
+                        <div x-show="sinrNR != '-' && sinrNRPercentage != '0'" class="progress w-100" role="progressbar"
+                          aria-label="SINR BAR" :aria-valuenow="sinrNRPercentage" aria-valuemin="0" aria-valuemax="100"
+                          style="height: 18px">
+                          <div :class="getProgressBarClass()" :style="'width: ' + sinrNRPercentage +'%'">
+                            <span x-text="sinrNR + ' / ' + sinrNRPercentage +'%'"></span>
                           </div>
-                          <span
-                            x-text="sinrNR"
-                            x-show="sinrNRPercentage == '0'"
-                          ></span>
-                          <span x-show="sinrNR == '-'" class="fst-italic">
-                            None
-                          </span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                        </div>
+                        <span x-text="sinrNR" x-show="sinrNRPercentage == '0'"></span>
+                        <span x-show="sinrNR == '-'" class="fst-italic">
+                          None
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="card-footer">
-                <div class="card-text">
-                  <div class="row">
-                    <div class="col">
-                      <div>
-                        <p>Date Updated</p>
-                      </div>
+            </div>
+            <div class="card-footer">
+              <div class="card-text">
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p>Date Updated</p>
                     </div>
+                  </div>
 
-                    <div class="col">
-                      <p x-text="lastUpdate"></p>
-                    </div>
+                  <div class="col">
+                    <p x-text="lastUpdate"></p>
                   </div>
                 </div>
               </div>
@@ -642,797 +430,693 @@
           </div>
         </div>
       </div>
-    </main>
-    <script src="js/dark-mode.js"></script>
+    </div>
+  </main>
+  <script src="js/dark-mode.js"></script>
 
-<script>
-  function processAllInfos() {
-    return {
-      // 状态变量
-      atcmd: "",
-      internetConnectionStatus: "Disconnected",
-      temperature: "0",
-      simStatus: "No SIM",
-      activeSim: "No SIM",
-      networkProvider: "N/A",
-      mccmnc: "00000",
-      apn: "Unknown",
-      networkMode: "Disconnected",
-      bands: "Unknown Bands",
-      bandwidth: "Unknown Bandwidth",
-      earfcns: "000",
-      pccPCI: "0",
-      sccPCI: "-",
-      ipv4: "000.000.000.000",
-      ipv6: "0000:0000:0000:0000:0000:0000:0000:0000",
-      cellID: "Unknown",
-      eNBID: "Unknown",
-      tac: "Unknown",
-      csq: "-",
-      rsrpLTE: "-",
-      rsrpNR: "-",
-      rsrpLTEPercentage: "0%",
-      rsrpNRPercentage: "0%",
-      rsrqLTE: "-",
-      rsrqNR: "-",
-      rsrqLTEPercentage: "0%",
-      rsrqNRPercentage: "0%",
-      sinrLTE: "-",
-      sinrNR: "-",
-      sinrLTEPercentage: "0%",
-      sinrNRPercentage: "0%",
-      signalPercentage: "0",
-      signalAssessment: "Unknown",
-      uptime: "Unknown",
-      lastUpdate: new Date().toLocaleString(),
-      newRefreshRate: null,
-      refreshRate: 3,
-      nrDownload: "0",
-      nrUpload: "0",
-      nonNrDownload: "0",
-      nonNrUpload: "0",
-      downloadStat: "0",
-      uploadStat: "0",
+  <script>
+    function processAllInfos() {
+      return {
+        atcmd: "",
+        internetConnectionStatus: "Disconnected",
+        temperature: "0",
+        simStatus: "No SIM",
+        activeSim: "No SIM",
+        networkProvider: "N/A",
+        mccmnc: "00000",
+        apn: "Unknown",
+        networkMode: "Disconnected",
+        bands: "Unknown Bands",
+        bandwidth: "Unknown Bandwidth",
+        earfcns: "000",
+        pccPCI: "0",
+        sccPCI: "-",
+        ipv4: "000.000.000.000",
+        ipv6: "0000:0000:0000:0000:0000:0000:0000:0000",
+        cellID: "Unknown",
+        eNBID: "Unknown",
+        tac: "Unknown",
+        csq: "-",
+        rsrpLTE: "-",
+        rsrpNR: "-",
+        rsrpLTEPercentage: "0%",
+        rsrpNRPercentage: "0%",
+        rsrqLTE: "-",
+        rsrqNR: "-",
+        rsrqLTEPercentage: "0%",
+        rsrqNRPercentage: "0%",
+        sinrLTE: "-",
+        sinrNR: "-",
+        sinrLTEPercentage: "0%",
+        sinrNRPercentage: "0%",
+        signalPercentage: "0",
+        signalAssessment: "Unknown",
+        uptime: "Unknown",
+        lastUpdate: new Date().toLocaleString(),
+        newRefreshRate: null,
+        refreshRate: 3,
+        nrDownload: "0",
+        nrUpload: "0",
+        nonNrDownload: "0",
+        nonNrUpload: "0",
+        downloadStat: "0",
+        uploadStat: "0",
 
-      // 主数据获取方法
-      fetchAllInfo() {
-        console.log("[INFO] Starting data fetch process");
-        
-        // 构建更简洁的AT命令
-        this.atcmd = 'AT+QTEMP;+QUIMSLOT?;+QSPN;+CGCONTRDP=1;+QENG="servingcell";+QCAINFO;+QSIMSTAT?;+CSQ';
-        console.log("[DEBUG] AT command: " + this.atcmd);
-        
-        // 使用更安全的API端点
-        const apiEndpoint = "/api/network-info";
-        
-        fetch(apiEndpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ atcmd: this.atcmd })
-        })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.text();
-        })
-        .then((data) => {
-          console.log("[DEBUG] Raw response data received");
-          
-          // 更健壮的错误检测
-          if (data.includes("\nERROR") || data.startsWith("ERROR")) {
-            console.error("[ERROR] AT command returned ERROR");
-            
-            // 尝试从错误响应中提取有用信息
-            const errorLines = data.split("\n");
-            const firstErrorLine = errorLines.find(line => line.includes("ERROR"));
-            
-            if (firstErrorLine) {
-              console.error("[ERROR] AT command error details:", firstErrorLine);
-              this.activeSim = `AT Error: ${firstErrorLine.substring(0, 50)}`;
-            } else {
-              this.activeSim = "AT command failed";
-            }
-            
-            return;
-          }
-          
-          const rawdata = data;
-          const lines = rawdata.split("\n")
-            .map(line => line.trim())
-            .filter(line => line.length > 0);
-          
-          console.log("[DEBUG] Parsed response into " + lines.length + " lines");
-          
-          // ======================
-          // 数据解析部分
-          // ======================
-          
-          // --- 温度获取 ---
-          try {
-            console.log("[DEBUG] Parsing temperature...");
-            const tempLine1 = lines.find(line => line.includes('+QTEMP:"cpuss-0-usr"'));
-            const tempLine2 = lines.find(line => line.includes('+QTEMP:"cpu0-a7-usr"'));
-            const tempLineGeneric = lines.find(line => line.includes('+QTEMP:'));
-            
-            if (tempLine1) {
-              console.log("[DEBUG] Found temperature line (cpuss-0-usr): " + tempLine1);
-              this.temperature = tempLine1.split(",")[1].replace(/"/g, "");
-            } else if (tempLine2) {
-              console.log("[DEBUG] Found temperature line (cpu0-a7-usr): " + tempLine2);
-              this.temperature = tempLine2.split(",")[1].replace(/"/g, "");
-            } else if (tempLineGeneric) {
-              console.log("[DEBUG] Found generic temperature line: " + tempLineGeneric);
-              const match = tempLineGeneric.match(/\d+/);
-              if (match) {
-                this.temperature = match[0];
-              } else {
-                console.warn("[WARN] No temperature value found in line");
+        fetchAllInfo() {
+          console.log("开始获取所有信息...");
+          this.atcmd =
+            'AT+QTEMP;+QUIMSLOT?;+QSPN;+CGCONTRDP=1;+QMAP="WWANIP";+QENG="servingcell";+QCAINFO;+QSIMSTAT?;+CSQ;+QGDNRCNT?;+QGDCNT?';
+
+          fetch(
+            "/cgi-bin/get_atcommand?" +
+            new URLSearchParams({
+              atcmd: this.atcmd,
+            })
+          )
+            .then((response) => {
+              return response.text();
+            })
+            .then((data) => {
+              console.log("收到AT命令响应");
+              console.log("原始响应数据:", data);
+
+              // 即使有ERROR，也尝试解析可用数据
+              const hasError = data.includes("ERROR");
+              if (hasError) {
+                console.warn("部分命令执行失败，但仍尝试解析可用数据");
+              }
+
+              const lines = data.split("\n");
+              console.log("解析后的行数据:", lines);
+
+              // --- 温度 ---
+              try {
+                console.log("开始解析温度...");
+                let tempLine = lines.find(line => line.includes('+QTEMP:"cpuss-0-usr"'));
+                if (!tempLine) {
+                  tempLine = lines.find(line => line.includes('+QTEMP:"cpu0-a7-usr"'));
+                }
+                if (tempLine) {
+                  this.temperature = tempLine.split(",")[1].replace(/"/g, "");
+                }
+                console.log("温度:", this.temperature);
+              } catch (error) {
+                console.error("温度解析失败:", error);
                 this.temperature = "N/A";
               }
-            } else {
-              console.warn("[WARN] No temperature line found");
-              this.temperature = "N/A";
-            }
-            console.log("[INFO] Temperature set to: " + this.temperature);
-          } catch (error) {
-            console.error("[ERROR] Temperature parsing failed: " + error.message);
-            this.temperature = "N/A";
-          }
 
-          // --- SIM状态获取 ---
-          try {
-            console.log("[DEBUG] Parsing SIM status...");
-            const simLine = lines.find(line => line.includes("+QSIMSTAT:"));
-            if (simLine) {
-              console.log("[DEBUG] Found SIM status line: " + simLine);
-              const sim_status = simLine.split(" ")[1].replace(/"/g, "").split(",")[1];
-              if (sim_status == 1) {
-                this.simStatus = "Active";
-              } else if (sim_status == 0) {
-                this.simStatus = "No SIM";
-              } else {
-                this.simStatus = "Unknown (" + sim_status + ")";
+              // --- SIM状态 ---
+              try {
+                console.log("开始解析SIM状态...");
+                const simLine = lines.find(line => line.includes("+QSIMSTAT:"));
+                if (simLine) {
+                  const sim_status = simLine.split(" ")[1].replace(/"/g, "").split(",")[1];
+                  this.simStatus = sim_status == 1 ? "Active" : "No SIM";
+                }
+                console.log("SIM状态:", this.simStatus);
+              } catch (error) {
+                console.error("SIM状态解析失败:", error);
+                this.simStatus = "Unknown";
               }
-              console.log("[INFO] SIM status set to: " + this.simStatus);
-            } else {
-              console.warn("[WARN] No SIM status line found");
-              this.simStatus = "N/A";
-            }
-          } catch (error) {
-            console.error("[ERROR] SIM status parsing failed: " + error.message);
-            this.simStatus = "N/A";
-          }
 
-          // --- Active SIM ---
-          try {
-            console.log("[DEBUG] Parsing active SIM...");
-            const simSlotLine = lines.find(line => line.includes("+QUIMSLOT:"));
-            if (simSlotLine) {
-              console.log("[DEBUG] Found active SIM line: " + simSlotLine);
-              const current_sim = simSlotLine.split(" ")[1].replace(/"/g, "");
-              if (current_sim == 1) {
-                this.activeSim = "SIM 1";
-              } else if (current_sim == 2) {
-                this.activeSim = "SIM 2";
-              } else {
-                this.activeSim = "No SIM (" + current_sim + ")";
+              // --- 活动SIM卡 ---
+              try {
+                console.log("开始解析活动SIM卡...");
+                const simSlotLine = lines.find(line => line.includes("+QUIMSLOT:"));
+                if (simSlotLine) {
+                  const current_sim = simSlotLine.split(" ")[1].replace(/"/g, "");
+                  this.activeSim = current_sim == 1 ? "SIM 1" : (current_sim == 2 ? "SIM 2" : "No SIM");
+                }
+                console.log("活动SIM卡:", this.activeSim);
+              } catch (error) {
+                console.error("活动SIM卡解析失败:", error);
+                this.activeSim = "Unknown";
               }
-              console.log("[INFO] Active SIM set to: " + this.activeSim);
-            } else {
-              console.warn("[WARN] No active SIM line found");
-              this.activeSim = "N/A";
-            }
-          } catch (error) {
-            console.error("[ERROR] Active SIM parsing failed: " + error.message);
-            this.activeSim = "N/A";
-          }
 
-          // --- Network Provider ---
-          try {
-            console.log("[DEBUG] Parsing network provider...");
-            const qspnLine = lines.find(line => line.includes("+QSPN:"));
-            if (qspnLine) {
-              console.log("[DEBUG] Found network provider line: " + qspnLine);
-              const network_provider = qspnLine.split(",")[0].replace("+QSPN: ", "").replace(/"/g, "").replace(/ /g, "");
-              if (network_provider.match(/^[0-9]+$/) != null) {
-                this.networkProvider = qspnLine.split(",")[2].replace(/"/g, "");
-              } else {
-                this.networkProvider = network_provider;
+              // --- 网络提供商 ---
+              try {
+                console.log("开始解析网络提供商...");
+                const qspnLine = lines.find(line => line.includes("+QSPN:"));
+                if (qspnLine) {
+                  const parts = qspnLine.split(",");
+                  if (parts.length >= 5) {
+                    this.networkProvider = parts[2].replace(/"/g, "");
+                    this.mccmnc = parts[4].replace(/"/g, "");
+                  }
+                }
+                console.log("网络提供商:", this.networkProvider);
+                console.log("MCCMNC:", this.mccmnc);
+              } catch (error) {
+                console.error("网络提供商解析失败:", error);
+                this.networkProvider = "N/A";
+                this.mccmnc = "00000";
               }
-              console.log("[INFO] Network provider set to: " + this.networkProvider);
-            } else {
-              console.warn("[WARN] No network provider line found");
-              this.networkProvider = "N/A";
-            }
-          } catch (error) {
-            console.error("[ERROR] Network provider parsing failed: " + error.message);
-            this.networkProvider = "N/A";
-          }
 
-          // --- MCCMNC ---
-          try {
-            console.log("[DEBUG] Parsing MCCMNC...");
-            const qspnLine = lines.find(line => line.includes("+QSPN:"));
-            if (qspnLine) {
-              console.log("[DEBUG] Found MCCMNC line: " + qspnLine);
-              this.mccmnc = qspnLine.split(",")[4].replace(/"/g, "");
-              console.log("[INFO] MCCMNC set to: " + this.mccmnc);
-            } else {
-              console.warn("[WARN] No MCCMNC line found");
-              this.mccmnc = "00000";
-            }
-          } catch (error) {
-            console.error("[ERROR] MCCMNC parsing failed: " + error.message);
-            this.mccmnc = "00000";
-          }
+              // --- APN ---
+              try {
+                console.log("开始解析APN...");
+                const cgcontrdpLine = lines.find(line => line.includes("+CGCONTRDP:"));
+                if (cgcontrdpLine) {
+                  const parts = cgcontrdpLine.split(",");
+                  if (parts.length >= 3) {
+                    this.apn = parts[2].replace(/"/g, "");
+                  }
+                }
+                console.log("APN:", this.apn);
+              } catch (error) {
+                console.error("APN解析失败:", error);
+                this.apn = "Unknown";
+              }
 
-          // --- APN ---
-          try {
-            console.log("[DEBUG] Parsing APN...");
-            const cgcontrdpLine = lines.find(line => line.includes("+CGCONTRDP:"));
-            if (cgcontrdpLine) {
-              console.log("[DEBUG] Found APN line: " + cgcontrdpLine);
-              this.apn = cgcontrdpLine.split(",")[2].replace(/"/g, "");
-              console.log("[INFO] APN set to: " + this.apn);
-            } else {
-              console.warn("[WARN] No APN line found");
-              this.apn = "Unknown";
-            }
-          } catch (error) {
-            console.error("[ERROR] APN parsing failed: " + error.message);
-            this.apn = "Unknown";
-          }
+              // --- IP地址 ---
+              try {
+                console.log("开始解析IP地址...");
+                const ipv4Line = lines.find(line => line.includes("IPV4"));
+                if (ipv4Line) {
+                  this.ipv4 = ipv4Line.split(",")[4].replace(/"/g, "");
+                }
 
-          // --- Network Mode ---
-          try {
-            console.log("[DEBUG] Parsing network mode...");
-            const qengLine = lines.find(line => line.includes('+QENG: "servingcell"'));
-            if (qengLine) {
-              console.log("[DEBUG] Found network mode line: " + qengLine);
-              const network_mode = qengLine.split(",")[2].replace(/"/g, "");
-              const duplex_mode = qengLine.split(",")[3].replace(/"/g, "");
+                const ipv6Line = lines.find(line => line.includes("IPV6"));
+                if (ipv6Line) {
+                  this.ipv6 = ipv6Line.split(",")[4].replace(/"/g, "");
+                }
+                console.log("IPv4:", this.ipv4);
+                console.log("IPv6:", this.ipv6);
+              } catch (error) {
+                console.error("IP地址解析失败:", error);
+                this.ipv4 = "000.000.000.000";
+                this.ipv6 = "0000:0000:0000:0000:0000:0000:0000:0000";
+              }
 
-              if (network_mode == "NR5G-SA") {
-                if (duplex_mode == "TDD") {
-                  this.networkMode = "5G SA TDD";
-                } else if (duplex_mode == "FDD") {
-                  this.networkMode = "5G SA FDD";
+              // --- 网络模式 ---
+              try {
+                console.log("开始解析网络模式...");
+                const servingCellLine = lines.find(line => line.includes('+QENG: "servingcell"'));
+                if (servingCellLine) {
+                  const parts = servingCellLine.split(",");
+                  if (parts.length >= 4) {
+                    const network_mode = parts[2].replace(/"/g, "");
+                    const duplex_mode = parts[3].replace(/"/g, "");
+
+                    if (network_mode == "NR5G-SA") {
+                      this.networkMode = duplex_mode == "TDD" ? "5G SA TDD" : "5G SA FDD";
+                    } else if (network_mode == "LTE") {
+                      this.networkMode = duplex_mode == "TDD" ? "4G LTE TDD" : "4G LTE FDD";
+                    }
+                  }
                 } else {
-                  this.networkMode = "5G SA Unknown";
+                  // 尝试备用解析
+                  const lteLine = lines.find(line => line.includes('+QENG: "LTE"'));
+                  if (lteLine) {
+                    this.networkMode = "4G LTE";
+                  } else {
+                    const nrLine = lines.find(line => line.includes('+QENG: "NR5G-NSA"'));
+                    if (nrLine) {
+                      this.networkMode = "5G NSA";
+                    } else {
+                      this.networkMode = "Unknown";
+                    }
+                  }
                 }
-              } else if (network_mode == "LTE") {
-                const is_tdd = qengLine.split(",")[3].replace(/"/g, "");
-                if (is_tdd == "TDD") {
-                  this.networkMode = "4G LTE TDD";
-                } else if (is_tdd == "FDD") {
-                  this.networkMode = "4G LTE FDD";
+                console.log("网络模式:", this.networkMode);
+              } catch (error) {
+                console.error("网络模式解析失败:", error);
+                this.networkMode = "Unknown";
+              }
+
+              // --- 频段 ---
+              try {
+                console.log("开始解析频段...");
+                const bands = lines.filter((line) => line.includes("LTE BAND"));
+                for (let i = 0; i < bands.length; i++) {
+                  bands[i] = bands[i].split(",")[3].replace(/"/g, "");
+                }
+                const bands_5g = lines.filter((line) => line.includes("NR5G BAND"));
+                for (let i = 0; i < bands_5g.length; i++) {
+                  bands_5g[i] = bands_5g[i].split(",")[3].replace(/"/g, "");
+                }
+                if (bands.length > 0 && bands_5g.length > 0) {
+                  this.bands = bands.join(", ") + ", " + bands_5g.join(", ");
+                } else if (bands.length > 0) {
+                  this.bands = bands.join(", ");
+                } else if (bands_5g.length > 0) {
+                  this.bands = bands_5g.join(", ");
                 } else {
-                  this.networkMode = "4G LTE Unknown";
+                  this.bands = "No Bands";
                 }
-              } else {
-                this.networkMode = "Unknown (" + network_mode + ")";
-              }
-              console.log("[INFO] Network mode set to: " + this.networkMode);
-            } else {
-              console.warn("[WARN] No network mode line found");
-              this.networkMode = "Disconnected";
-            }
-          } catch (error) {
-            console.error("[ERROR] Network mode parsing failed: " + error.message);
-            this.networkMode = "Disconnected";
-          }
-
-          // --- Bands ---
-          try {
-            console.log("[DEBUG] Parsing bands...");
-            const bands = lines.filter(line => line.includes("LTE BAND"));
-            const bands_5g = lines.filter(line => line.includes("NR5G BAND"));
-            
-            // 处理LTE频段
-            for (let i = 0; i < bands.length; i++) {
-              bands[i] = bands[i].split(",")[3].replace(/"/g, "");
-            }
-            
-            // 处理5G频段
-            for (let i = 0; i < bands_5g.length; i++) {
-              bands_5g[i] = bands_5g[i].split(",")[3].replace(/"/g, "");
-            }
-            
-            // 组合结果
-            if (bands.length > 0 && bands_5g.length > 0) {
-              this.bands = bands.join(", ") + ", " + bands_5g.join(", ");
-            } else if (bands.length > 0) {
-              this.bands = bands.join(", ");
-            } else if (bands_5g.length > 0) {
-              this.bands = bands_5g.join(", ");
-            } else {
-              this.bands = "No Bands";
-            }
-            console.log("[INFO] Bands set to: " + this.bands);
-          } catch (error) {
-            console.error("[ERROR] Bands parsing failed: " + error.message);
-            this.bands = "Unknown";
-          }
-
-          // --- Bandwidth ---
-          try {
-            console.log("[DEBUG] Parsing bandwidth...");
-            const bandwidth_line = lines.find(line => line.includes('+QENG: "servingcell"'));
-            
-            if (this.networkMode.includes("5G SA")) {
-              const nr_bw = bandwidth_line.split(",")[11];
-              const calculated_bandwidth = this.calculate_nr_bw(nr_bw);
-              this.bandwidth = "NR " + calculated_bandwidth + " MHz";
-            } else if (this.networkMode.includes("4G LTE")) {
-              const lte_bw_ul = bandwidth_line.split(",")[10];
-              const lte_bw_dl = bandwidth_line.split(",")[11];
-              const calculated_bandwidth_ul = this.calculate_lte_bw(lte_bw_ul);
-              const calculated_bandwidth_dl = this.calculate_lte_bw(lte_bw_dl);
-              this.bandwidth = calculated_bandwidth_ul + " UL / " + calculated_bandwidth_dl + " DL MHz";
-            } else if (this.networkMode.includes("5G NSA")) {
-              // 更复杂的NSA带宽计算
-              const lte_bandwidth_line = lines.find(line => line.includes('+QENG: "LTE"'));
-              const lte_bw_ul = lte_bandwidth_line.split(",")[8];
-              const lte_bw_dl = lte_bandwidth_line.split(",")[9];
-              const calculated_bandwidth_ul = this.calculate_lte_bw(lte_bw_ul);
-              const calculated_bandwidth_dl = this.calculate_lte_bw(lte_bw_dl);
-              
-              const nr_bandwidth_line = lines.find(line => line.includes('+QENG: "NR5G-NSA"'));
-              const nr_bw = nr_bandwidth_line.split(",")[9];
-              const calculated_bandwidth = this.calculate_nr_bw(nr_bw);
-              
-              this.bandwidth = calculated_bandwidth_ul + " UL / " + calculated_bandwidth_dl + " DL MHz / NR " + calculated_bandwidth + " MHz";
-            } else {
-              this.bandwidth = "Unknown Bandwidth";
-            }
-            console.log("[INFO] Bandwidth set to: " + this.bandwidth);
-          } catch (error) {
-            console.error("[ERROR] Bandwidth parsing failed: " + error.message);
-            this.bandwidth = "Unknown";
-          }
-
-          // --- E/ARFCN ---
-          try {
-            console.log("[DEBUG] Parsing E/ARFCN...");
-            if (this.networkMode.includes("5G SA")) {
-              const nr_pcc_arfcn = lines.find(line => line.includes('+QCAINFO: "PCC"')).split(",")[1];
-              try {
-                const nr_scc_arfcn = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
-                for (let i = 0; i < nr_scc_arfcn.length; i++) {
-                  nr_scc_arfcn[i] = nr_scc_arfcn[i].split(",")[1];
-                }
-                this.earfcns = nr_pcc_arfcn + ", " + nr_scc_arfcn.join(", ");
+                console.log("频段:", this.bands);
               } catch (error) {
-                this.earfcns = nr_pcc_arfcn.replace(/,/g, "");
+                console.error("频段解析失败:", error);
+                this.bands = "Unknown Bands";
               }
-            } else if (this.networkMode.includes("4G LTE")) {
-              const lte_pcc_arfcn = lines.find(line => line.includes('+QCAINFO: "PCC"')).split(",")[1];
-              try {
-                const lte_scc_arfcn = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
-                for (let i = 0; i < lte_scc_arfcn.length; i++) {
-                  lte_scc_arfcn[i] = lte_scc_arfcn[i].split(",")[1];
-                }
-                this.earfcns = lte_pcc_arfcn + ", " + lte_scc_arfcn.join(", ");
-              } catch (error) {
-                this.earfcns = lte_pcc_arfcn.replace(/,/g, "");
-              }
-            } else if (this.networkMode.includes("5G NSA")) {
-              const lte_pcc_arfcn = lines.find(line => line.includes('+QCAINFO: "PCC"')).split(",")[1];
-              try {
-                const lte_scc_arfcn = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
-                for (let i = 0; i < lte_scc_arfcn.length; i++) {
-                  lte_scc_arfcn[i] = lte_scc_arfcn[i].split(",")[1];
-                }
-                this.earfcns = lte_pcc_arfcn + ", " + lte_scc_arfcn.join(", ");
-              } catch (error) {
-                this.earfcns = lte_pcc_arfcn.replace(/,/g, "");
-              }
-            } else {
-              this.earfcns = "Unknown E/ARFCN";
-            }
-            console.log("[INFO] E/ARFCN set to: " + this.earfcns);
-          } catch (error) {
-            console.error("[ERROR] E/ARFCN parsing failed: " + error.message);
-            this.earfcns = "Unknown";
-          }
 
-          // --- PCI ---
-          try {
-            console.log("[DEBUG] Parsing PCI...");
-            if (this.networkMode.includes("5G SA")) {
-              const nr_pcc_pci = lines.find(line => line.includes('+QCAINFO: "PCC"')).split(",")[4];
+              // --- 带宽 ---
               try {
-                const nr_scc_pci = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
-                for (let i = 0; i < nr_scc_pci.length; i++) {
-                  nr_scc_pci[i] = nr_scc_pci[i].split(",")[5];
+                console.log("开始解析带宽...");
+                const bandwidth_line = lines.find((line) => line.includes('+QENG: "servingcell"'));
+                if (!bandwidth_line) {
+                  throw new Error("未找到带宽信息");
                 }
-                this.pccPCI = nr_pcc_pci;
-                this.sccPCI = nr_scc_pci.join(", ");
+
+                if (this.networkMode.includes("5G SA")) {
+                  const nr_bw = bandwidth_line.split(",")[11];
+                  const calculated_bandwidth = this.calculate_nr_bw(nr_bw);
+                  this.bandwidth = "NR " + calculated_bandwidth + " MHz";
+                } else if (this.networkMode.includes("4G LTE")) {
+                  const lte_bw_ul = bandwidth_line.split(",")[10];
+                  const lte_bw_dl = bandwidth_line.split(",")[11];
+                  const calculated_bandwidth_ul = this.calculate_lte_bw(lte_bw_ul);
+                  const calculated_bandwidth_dl = this.calculate_lte_bw(lte_bw_dl);
+                  this.bandwidth = calculated_bandwidth_ul + " UL / " + calculated_bandwidth_dl + " DL MHz";
+                } else if (this.networkMode == "5G NSA") {
+                  const lte_bandwidth_line = lines.find((line) => line.includes('+QENG: "LTE"'));
+                  const lte_bw_ul = lte_bandwidth_line.split(",")[8];
+                  const lte_bw_dl = lte_bandwidth_line.split(",")[9];
+                  const calculated_bandwidth_ul = this.calculate_lte_bw(lte_bw_ul);
+                  const calculated_bandwidth_dl = this.calculate_lte_bw(lte_bw_dl);
+
+                  const nr_bandwidth_line = lines.find((line) => line.includes('+QENG: "NR5G-NSA"'));
+                  const nr_bw = nr_bandwidth_line.split(",")[9];
+                  const calculated_bandwidth = this.calculate_nr_bw(nr_bw);
+
+                  this.bandwidth = calculated_bandwidth_ul + " UL / " + calculated_bandwidth_dl + " DL MHz" + " / NR " + calculated_bandwidth + " MHz";
+                } else {
+                  this.bandwidth = "Unknown Bandwidth";
+                }
+                console.log("带宽:", this.bandwidth);
               } catch (error) {
-                this.pccPCI = nr_pcc_pci.replace(/,/g, "");
+                console.error("带宽解析失败:", error);
+                this.bandwidth = "Unknown Bandwidth";
+              }
+
+              // --- E/ARFCN ---
+              try {
+                console.log("开始解析E/ARFCN...");
+                if (this.networkMode.includes("5G SA")) {
+                  const nr_pcc_arfcn_line = lines.find(line => line.includes('+QCAINFO: "PCC"'));
+                  if (nr_pcc_arfcn_line) {
+                    const nr_pcc_arfcn = nr_pcc_arfcn_line.split(",")[1];
+                    const nr_scc_arfcn_lines = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
+                    if (nr_scc_arfcn_lines.length > 0) {
+                      const nr_scc_arfcn = nr_scc_arfcn_lines.map(line => line.split(",")[1]);
+                      this.earfcns = nr_pcc_arfcn + ", " + nr_scc_arfcn.join(", ");
+                    } else {
+                      this.earfcns = nr_pcc_arfcn;
+                    }
+                  }
+                } else if (this.networkMode.includes("4G LTE")) {
+                  const lte_pcc_arfcn_line = lines.find(line => line.includes('+QCAINFO: "PCC"'));
+                  if (lte_pcc_arfcn_line) {
+                    const lte_pcc_arfcn = lte_pcc_arfcn_line.split(",")[1];
+                    const lte_scc_arfcn_lines = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
+                    if (lte_scc_arfcn_lines.length > 0) {
+                      const lte_scc_arfcn = lte_scc_arfcn_lines.map(line => line.split(",")[1]);
+                      this.earfcns = lte_pcc_arfcn + ", " + lte_scc_arfcn.join(", ");
+                    } else {
+                      this.earfcns = lte_pcc_arfcn;
+                    }
+                  }
+                } else if (this.networkMode == "5G NSA") {
+                  const lte_pcc_arfcn_line = lines.find(line => line.includes('+QCAINFO: "PCC"'));
+                  if (lte_pcc_arfcn_line) {
+                    const lte_pcc_arfcn = lte_pcc_arfcn_line.split(",")[1];
+                    const lte_scc_arfcn_lines = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
+                    if (lte_scc_arfcn_lines.length > 0) {
+                      const lte_scc_arfcn = lte_scc_arfcn_lines.map(line => line.split(",")[1]);
+                      this.earfcns = lte_pcc_arfcn + ", " + lte_scc_arfcn.join(", ");
+                    } else {
+                      this.earfcns = lte_pcc_arfcn;
+                    }
+                  }
+                } else {
+                  this.earfcns = "Unknown E/ARFCN";
+                }
+                console.log("E/ARFCN:", this.earfcns);
+              } catch (error) {
+                console.error("E/ARFCN解析失败:", error);
+                this.earfcns = "000";
+              }
+
+              // --- PCI ---
+              try {
+                console.log("开始解析PCI...");
+                if (this.networkMode.includes("5G SA")) {
+                  const nr_pcc_pci_line = lines.find(line => line.includes('+QCAINFO: "PCC"'));
+                  if (nr_pcc_pci_line) {
+                    const nr_pcc_pci = nr_pcc_pci_line.split(",")[4];
+                    const nr_scc_pci_lines = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
+                    if (nr_scc_pci_lines.length > 0) {
+                      const nr_scc_pci = nr_scc_pci_lines.map(line => line.split(",")[5]);
+                      this.pccPCI = nr_pcc_pci;
+                      this.sccPCI = nr_scc_pci.join(", ");
+                    } else {
+                      this.pccPCI = nr_pcc_pci;
+                      this.sccPCI = "-";
+                    }
+                  }
+                } else if (this.networkMode.includes("4G LTE")) {
+                  const lte_pcc_pci_line = lines.find(line => line.includes('+QCAINFO: "PCC"'));
+                  if (lte_pcc_pci_line) {
+                    const lte_pcc_pci = lte_pcc_pci_line.split(",")[5];
+                    const lte_scc_pci_lines = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
+                    if (lte_scc_pci_lines.length > 0) {
+                      const lte_scc_pci = lte_scc_pci_lines.map(line => line.split(",")[5]);
+                      this.pccPCI = lte_pcc_pci;
+                      this.sccPCI = lte_scc_pci.join(", ");
+                    } else {
+                      this.pccPCI = lte_pcc_pci;
+                      this.sccPCI = "-";
+                    }
+                  }
+                } else if (this.networkMode == "5G NSA") {
+                  const pccparts = lines.find(m => m.includes('QCAINFO: "PCC"')).split(":")[1].split(",");
+                  const sccarr = lines.filter(m => m.includes('QCAINFO: "SCC"'));
+                  const sccpci = [];
+                  sccarr.forEach((s) => {
+                    const sccparts = s.split(":")[1].split(",");
+                    let sccIndex = 5;
+                    switch (sccparts.length) {
+                      case 8: sccIndex = 4; break;
+                      case 13: case 12: case 10: default: sccIndex = 5; break;
+                    }
+                    sccpci.push(sccparts[sccIndex]);
+                  });
+                  this.sccPCI = sccpci.join(", ");
+                  let pccIndex = 5;
+                  switch (pccparts.length) {
+                    case 8: pccIndex = 4; break;
+                    case 13: case 12: case 10: default: pccIndex = 5; break;
+                  }
+                  this.pccPCI = pccparts[pccIndex]?.trim();
+                } else {
+                  this.pccPCI = "0";
+                  this.sccPCI = "-";
+                }
+                console.log("PCC PCI:", this.pccPCI);
+                console.log("SCC PCI:", this.sccPCI);
+              } catch (error) {
+                console.error("PCI解析失败:", error);
+                this.pccPCI = "0";
                 this.sccPCI = "-";
               }
-            } else if (this.networkMode.includes("4G LTE")) {
-              const lte_pcc_pci = lines.find(line => line.includes('+QCAINFO: "PCC"')).split(",")[5];
+
+              // --- 信号信息 ---
               try {
-                const lte_scc_pci = lines.filter(line => line.includes('+QCAINFO: "SCC"'));
-                for (let i = 0; i < lte_scc_pci.length; i++) {
-                  lte_scc_pci[i] = lte_scc_pci[i].split(",")[5];
+                console.log("开始解析信号信息...");
+                const csqLine = lines.find(line => line.includes("+CSQ:"));
+                if (csqLine) {
+                  this.csq = csqLine.split(" ")[1].replace("+CSQ: ", "").replace(/"/g, "");
                 }
-                this.pccPCI = lte_pcc_pci;
-                this.sccPCI = lte_scc_pci.join(", ");
+
+                // 尝试获取信号强度
+                const servingCellLine = lines.find(line => line.includes('+QENG: "servingcell"'));
+                if (servingCellLine) {
+                  const parts = servingCellLine.split(",");
+                  if (this.networkMode.includes("5G")) {
+                    if (parts.length > 12) this.rsrpNR = parts[12].replace(/"/g, "");
+                    if (parts.length > 13) this.rsrqNR = parts[13].replace(/"/g, "");
+                    if (parts.length > 14) this.sinrNR = parts[14].replace(/"/g, "");
+                  } else {
+                    if (parts.length > 13) this.rsrpLTE = parts[13].replace(/"/g, "");
+                    if (parts.length > 14) this.rsrqLTE = parts[14].replace(/"/g, "");
+                    if (parts.length > 16) this.sinrLTE = parts[16].replace(/"/g, "");
+                  }
+                }
+
+                // 计算信号百分比
+                if (this.rsrpNR !== "-") {
+                  this.rsrpNRPercentage = this.calculateRSRPPercentage(parseInt(this.rsrpNR));
+                  this.signalPercentage = this.rsrpNRPercentage;
+                } else if (this.rsrpLTE !== "-") {
+                  this.rsrpLTEPercentage = this.calculateRSRPPercentage(parseInt(this.rsrpLTE));
+                  this.signalPercentage = this.rsrpLTEPercentage;
+                }
+
+                // 计算信号评估
+                this.signalAssessment = this.signalQuality(this.signalPercentage);
+                console.log("信号评估:", this.signalAssessment);
+                console.log("信号百分比:", this.signalPercentage + "%");
               } catch (error) {
-                this.pccPCI = lte_pcc_pci;
-                this.sccPCI = "-";
+                console.error("信号信息解析失败:", error);
               }
-            } else if (this.networkMode.includes("5G NSA")) {
-              const pccparts = lines.find(m => m.includes('QCAINFO: "PCC"')).split(":")[1].split(",");
-              const sccarr = lines.filter(m => m.includes('QCAINFO: "SCC"'));
-              const sccpci = [];
-              sccarr.forEach((s) => {
-                const sccparts = s.split(":")[1].split(",");
-                let sccIndex = 5;
-                switch (sccparts.length) {
-                  case 8: sccIndex = 4; break;
-                  case 13: case 12: case 10: default: sccIndex = 5; break;
+
+              // --- 流量统计 ---
+              try {
+                console.log("开始解析流量统计...");
+                const qgdnrcntLine = lines.find(line => line.includes("+QGDNRCNT:"));
+                if (qgdnrcntLine) {
+                  const parts = qgdnrcntLine.split(",");
+                  this.nrDownload = parts[0].replace("+QGDNRCNT: ", "");
+                  this.nrUpload = parts[1];
                 }
-                sccpci.push(sccparts[sccIndex]);
-              });
-              this.sccPCI = sccpci.join(', ');
-              let pccIndex = 5;
-              switch (pccparts.length) {
-                case 8: pccIndex = 4; break;
-                case 13: case 12: case 10: default: pccIndex = 5; break;
+
+                const qgdcntLine = lines.find(line => line.includes("+QGDCNT:"));
+                if (qgdcntLine) {
+                  const parts = qgdcntLine.split(",");
+                  this.nonNrDownload = parts[1];
+                  this.nonNrUpload = parts[0].replace("+QGDCNT: ", "");
+                }
+
+                // 计算总流量
+                const totalDownload = parseInt(this.nrDownload || 0) + parseInt(this.nonNrDownload || 0);
+                const totalUpload = parseInt(this.nrUpload || 0) + parseInt(this.nonNrUpload || 0);
+
+                this.downloadStat = this.bytesToSize(totalDownload);
+                this.uploadStat = this.bytesToSize(totalUpload);
+                console.log("下载统计:", this.downloadStat);
+                console.log("上传统计:", this.uploadStat);
+              } catch (error) {
+                console.error("流量统计解析失败:", error);
+                this.downloadStat = "0";
+                this.uploadStat = "0";
               }
-              this.pccPCI = pccparts[pccIndex]?.trim();
-            } else {
-              this.pccPCI = "0";
-              this.sccPCI = "-";
-            }
-            console.log("[INFO] PCI set to: PCC=" + this.pccPCI + ", SCC=" + this.sccPCI);
-          } catch (error) {
-            console.error("[ERROR] PCI parsing failed: " + error.message);
-            this.pccPCI = "0";
-            this.sccPCI = "-";
+
+              // --- 小区信息 ---
+              try {
+                console.log("开始解析小区信息...");
+                const servingCellLine = lines.find(line => line.includes('+QENG: "servingcell"'));
+                if (servingCellLine) {
+                  const parts = servingCellLine.split(",");
+                  if (parts.length > 6) {
+                    const longCID = parts[6].replace(/"/g, "");
+                    this.cellID = "Long " + longCID;
+
+                    // 尝试解析eNBID
+                    try {
+                      this.eNBID = parseInt(longCID.substring(0, longCID.length - 2), 16);
+                    } catch (e) {
+                      console.warn("解析eNBID失败:", e);
+                      this.eNBID = "Unknown";
+                    }
+                  }
+
+                  if (parts.length > 8) {
+                    const localTac = parts[8].replace(/"/g, "");
+                    this.tac = parseInt(localTac, 16) + " (" + localTac + ")";
+                  }
+                }
+                console.log("小区ID:", this.cellID);
+                console.log("eNBID:", this.eNBID);
+                console.log("TAC:", this.tac);
+              } catch (error) {
+                console.error("小区信息解析失败:", error);
+              }
+
+              // 更新最后更新时间
+              this.lastUpdate = new Date().toLocaleString();
+              console.log("所有信息解析完成");
+            })
+            .catch((error) => {
+              console.error("获取数据失败:", error);
+              this.activeSim = "获取数据出错";
+            });
+        },
+
+        bytesToSize(bytes) {
+          const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+          if (bytes == 0) return "0 Byte";
+          const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+          return Math.round(bytes / Math.pow(1024, i), 2) + " " + sizes[i];
+        },
+
+        calculate_lte_bw(lte_bw) {
+          const BANDWIDTH_MAP = {
+            0: 1.4,
+            1: 3,
+            2: 5,
+            3: 10,
+            4: 15,
+            5: 20,
+            6: 40,
+            7: 80,
+            8: 100,
+            9: 200,
+          };
+          return BANDWIDTH_MAP[lte_bw] || "Unknown";
+        },
+
+        calculate_nr_bw(nr_bw) {
+          const NR_BANDWIDTH_MAP = {
+            0: 5,
+            1: 10,
+            2: 15,
+            3: 20,
+            4: 25,
+            5: 30,
+            6: 40,
+            7: 50,
+            8: 60,
+            9: 70,
+            10: 80,
+            11: 90,
+            12: 100,
+            13: 200,
+            14: 400,
+          };
+          return NR_BANDWIDTH_MAP[nr_bw] || "Unknown";
+        },
+
+        calculateRSRPPercentage(rsrp) {
+          let RSRP_min = -135;
+          let RSRP_max = -65;
+
+          if (isNaN(rsrp) || rsrp < -140) {
+            return 0;
           }
 
-          // --- IPv4 and IPv6 ---
-          try {
-            console.log("[DEBUG] Parsing IP addresses...");
-            this.ipv4 = lines.find(line => line.includes("IPV4")).split(",")[4].replace(/"/g, "");
-            this.ipv6 = lines.find(line => line.includes("IPV6")).split(",")[4].replace(/"/g, "");
-            console.log("[INFO] IPv4 set to: " + this.ipv4);
-            console.log("[INFO] IPv6 set to: " + this.ipv6);
-          } catch (error) {
-            console.error("[ERROR] IP address parsing failed: " + error.message);
-            this.ipv4 = "000.000.000.000";
-            this.ipv6 = "0000:0000:0000:0000:0000:0000:0000:0000";
+          let percentage = ((rsrp - RSRP_min) / (RSRP_max - RSRP_min)) * 100;
+
+          if (percentage > 100) percentage = 100;
+          if (percentage < 15) percentage = 15;
+
+          return Math.round(percentage);
+        },
+
+        calculateRSRQPercentage(rsrq) {
+          let RSRQ_min = -20;
+          let RSRQ_max = -8;
+
+          if (isNaN(rsrq) || rsrq < -20) {
+            return 0;
           }
 
-          // --- Traffic Stats ---
-          try {
-            console.log("[DEBUG] Parsing traffic stats...");
-            this.nrDownload = lines.find(line => line.includes("+QGDNRCNT:")).split(",")[0].replace("+QGDNRCNT: ", "");
-            this.nrUpload = lines.find(line => line.includes("+QGDNRCNT:")).split(",")[1];
-            this.nonNrDownload = lines.find(line => line.includes("+QGDCNT:")).split(",")[1];
-            this.nonNrUpload = lines.find(line => line.includes("+QGDCNT:")).split(",")[0].replace("+QGDCNT: ", "");
-            
-            this.downloadStat = parseInt(this.nrDownload) + parseInt(this.nonNrDownload);
-            this.uploadStat = parseInt(this.nrUpload) + parseInt(this.nonNrUpload);
-            
-            this.downloadStat = this.bytesToSize(this.downloadStat);
-            this.uploadStat = this.bytesToSize(this.uploadStat);
-            
-            console.log("[INFO] Download stat: " + this.downloadStat);
-            console.log("[INFO] Upload stat: " + this.uploadStat);
-          } catch (error) {
-            console.error("[ERROR] Traffic stats parsing failed: " + error.message);
-            this.downloadStat = "0";
-            this.uploadStat = "0";
+          let percentage = ((rsrq - RSRQ_min) / (RSRQ_max - RSRQ_min)) * 100;
+
+          if (percentage > 100) percentage = 100;
+          if (percentage < 15) percentage = 15;
+
+          return Math.round(percentage);
+        },
+
+        calculateSINRPercentage(sinr) {
+          let SINR_min = -10;
+          let SINR_max = 35;
+
+          if (isNaN(sinr) || sinr < -10) {
+            return 0;
           }
 
-          // --- Signal Information ---
-          try {
-            console.log("[DEBUG] Parsing signal information...");
-            const currentNetworkMode = this.networkMode;
-            
-            if (currentNetworkMode.includes("5G SA") || currentNetworkMode.includes("4G LTE")) {
-              const qengLine = lines.find(line => line.includes('+QENG: "servingcell"'));
-              
-              // CellID
-              const longCID = qengLine.split(",")[6].replace(/"/g, "");
-              this.eNBID = parseInt(longCID.substring(0, longCID.length - 2), 16);
-              const shortCID = longCID.substring(longCID.length - 2);
-              
-              if (currentNetworkMode.includes("5G SA")) {
-                // TAC
-                const localTac = qengLine.split(",")[8].replace(/"/g, "");
-                this.tac = parseInt(localTac, 16) + " (" + localTac + ")";
-                this.csq = "NR-SA Mode";
-                
-                // RSRP
-                this.rsrpNR = qengLine.split(",")[12].replace(/"/g, "");
-                
-                // RSRQ
-                this.rsrqNR = qengLine.split(",")[13].replace(/"/g, "");
-                
-                // SINR
-                this.sinrNR = qengLine.split(",")[14].replace(/"/g, "");
-                
-                // Calculate percentages
-                this.rsrpNRPercentage = this.calculateRSRPPercentage(parseInt(this.rsrpNR));
-                this.rsrqNRPercentage = this.calculateRSRQPercentage(parseInt(this.rsrqNR));
-                this.sinrNRPercentage = this.calculateSINRPercentage(parseInt(this.sinrNR));
-                
-                // Signal percentage
-                this.signalPercentage = this.calculateSignalPercentage(
-                  this.rsrpNRPercentage,
-                  this.sinrNRPercentage
-                );
-                
-                // Signal assessment
-                this.signalAssessment = this.signalQuality(this.signalPercentage);
+          let percentage = ((sinr - SINR_min) / (SINR_max - SINR_min)) * 100;
+
+          if (percentage > 100) percentage = 100;
+          if (percentage < 15) percentage = 15;
+
+          return Math.round(percentage);
+        },
+
+        signalQuality(percentage) {
+          if (percentage >= 80) return "Excellent";
+          if (percentage >= 60) return "Good";
+          if (percentage >= 40) return "Fair";
+          if (percentage >= 0) return "Poor";
+          return "No Signal";
+        },
+
+        fetchUpTime() {
+          fetch("/cgi-bin/get_uptime")
+            .then((response) => response.text())
+            .then((data) => {
+              const days = data.match(/(\d+) day/);
+              const hours = data.match(/(\d+) hour/);
+              const minutes = data.match(/(\d+) min/);
+              const hoursAndMinutes = data.match(/(\d+):(\d+),/);
+
+              if (hoursAndMinutes != null) {
+                if (days != null) {
+                  this.uptime = `${days[1]} day${days[1] === "1" ? "" : "s"}, ${hoursAndMinutes[1]} hour${hoursAndMinutes[1] === "1" ? "" : "s"} ${hoursAndMinutes[2]} minutes`;
+                } else {
+                  this.uptime = `${hoursAndMinutes[1]} hour${hoursAndMinutes[1] === "1" ? "" : "s"} ${hoursAndMinutes[2]} minutes`;
+                }
+              } else if (days != null) {
+                if (hours != null) {
+                  this.uptime = `${days[1]} day${days[1] === "1" ? "" : "s"}, ${hours[1]} hour${hours[1] === "1" ? "" : "s"}`;
+                } else if (minutes != null) {
+                  this.uptime = `${days[1]} day${days[1] === "1" ? "" : "s"}, ${minutes[1]} minute${minutes[1] === "1" ? "" : "s"}`;
+                } else {
+                  this.uptime = `${days[1]} day${days[1] === "1" ? "" : "s"}`;
+                }
+              } else if (hours != null) {
+                this.uptime = `${hours[1]} hour${hours[1] === "1" ? "" : "s"}`;
+              } else if (minutes != null) {
+                this.uptime = `${minutes[1]} minute${minutes[1] === "1" ? "" : "s"}`;
               } else {
-                // LTE Only
-                const localTac = qengLine.split(",")[12].replace(/"/g, "");
-                this.tac = parseInt(localTac, 16) + " (" + localTac + ")";
-                
-                // CSQ
-                this.csq = lines.find(line => line.includes("+CSQ:")).split(" ")[1].replace("+CSQ: ", "").replace(/"/g, "");
-                
-                // RSRP
-                this.rsrpLTE = qengLine.split(",")[13].replace(/"/g, "");
-                
-                // RSRQ
-                this.rsrqLTE = qengLine.split(",")[14].replace(/"/g, "");
-                
-                // SINR
-                this.sinrLTE = qengLine.split(",")[16].replace(/"/g, "");
-                
-                // Calculate percentages
-                this.rsrpLTEPercentage = this.calculateRSRPPercentage(parseInt(this.rsrpLTE));
-                this.rsrqLTEPercentage = this.calculateRSRQPercentage(parseInt(this.rsrqLTE));
-                this.sinrLTEPercentage = this.calculateSINRPercentage(parseInt(this.sinrLTE));
-                
-                // Signal percentage
-                this.signalPercentage = this.calculateSignalPercentage(
-                  this.rsrpLTEPercentage,
-                  this.sinrLTEPercentage
-                );
-                
-                // Signal assessment
-                this.signalAssessment = this.signalQuality(this.signalPercentage);
+                this.uptime = "Unknown Time";
               }
-              
-              this.cellID = "Short " + shortCID + "(" + parseInt(shortCID, 16) + ")" + ", Long " + longCID + "(" + parseInt(longCID, 16) + ")";
-            } else if (currentNetworkMode.includes("5G NSA")) {
-              // LTE部分
-              const lteLine = lines.find(line => line.includes('+QENG: "LTE"'));
-              const longCID = lteLine.split(",")[4].replace(/"/g, "");
-              this.eNBID = parseInt(longCID.substring(0, longCID.length - 2), 16);
-              const shortCID = longCID.substring(longCID.length - 2);
-              
-              // TAC
-              const localTac = lteLine.split(",")[10].replace(/"/g, "");
-              this.tac = parseInt(localTac, 16) + " (" + localTac + ")";
-              
-              // CSQ
-              this.csq = lines.find(line => line.includes("+CSQ:")).split(" ")[1].replace("+CSQ: ", "").replace(/"/g, "");
-              
-              // RSRP LTE
-              this.rsrpLTE = lteLine.split(",")[11].replace(/"/g, "");
-              
-              // RSRQ LTE
-              this.rsrqLTE = lteLine.split(",")[12].replace(/"/g, "");
-              
-              // SINR LTE
-              this.sinrLTE = lteLine.split(",")[14].replace(/"/g, "");
-              
-              // Calculate LTE percentages
-              this.rsrpLTEPercentage = this.calculateRSRPPercentage(parseInt(this.rsrpLTE));
-              this.rsrqLTEPercentage = this.calculateRSRQPercentage(parseInt(this.rsrqLTE));
-              this.sinrLTEPercentage = this.calculateSINRPercentage(parseInt(this.sinrLTE));
-              
-              // LTE signal percentage
-              const lte_signal_percentage = this.calculateSignalPercentage(
-                this.rsrpLTEPercentage,
-                this.sinrLTEPercentage
-              );
-              
-              // NR部分
-              const nrLine = lines.find(line => line.includes('+QENG: "NR5G-NSA"'));
-              
-              // RSRP NR
-              this.rsrpNR = nrLine.split(",")[4].replace(/"/g, "");
-              
-              // SINR NR
-              this.sinrNR = nrLine.split(",")[5].replace(/"/g, "");
-              
-              // RSRQ NR
-              this.rsrqNR = nrLine.split(",")[6].replace(/"/g, "");
-              
-              // Calculate NR percentages
-              this.rsrpNRPercentage = this.calculateRSRPPercentage(parseInt(this.rsrpNR));
-              this.rsrqNRPercentage = this.calculateRSRQPercentage(parseInt(this.rsrqNR));
-              this.sinrNRPercentage = this.calculateSINRPercentage(parseInt(this.sinrNR));
-              
-              // NR signal percentage
-              const nr_signal_percentage = this.calculateSignalPercentage(
-                this.rsrpNRPercentage,
-                this.sinrNRPercentage
-              );
-              
-              // Average signal percentage
-              this.signalPercentage = (lte_signal_percentage + nr_signal_percentage) / 2;
-              
-              // Signal assessment
-              this.signalAssessment = this.signalQuality(this.signalPercentage);
-              
-              this.cellID = "Short " + shortCID + "(" + parseInt(shortCID, 16) + ")" + ", Long " + longCID + "(" + parseInt(longCID, 16) + ")";
-            } else {
-              this.signalAssessment = "No Signal";
-            }
-            
-            console.log("[INFO] Signal assessment: " + this.signalAssessment);
-            console.log("[INFO] Signal percentage: " + this.signalPercentage + "%");
-          } catch (error) {
-            console.error("[ERROR] Signal information parsing failed: " + error.message);
-            this.signalAssessment = "Unknown";
-            this.signalPercentage = "0";
+            });
+        },
+
+        updateRefreshRate() {
+          if (this.newRefreshRate < 3) {
+            this.newRefreshRate = 3;
           }
-          
-          console.log("[INFO] Data parsing completed successfully");
-        })
-        .catch((error) => {
-          console.error("[ERROR] Fetch request failed:", error);
-          
-          // 详细的错误分类和处理
-          let errorMessage = "网络错误";
-          let detailedMessage = "请检查网络连接";
-          
-          // 检测广告拦截器
-          if (error.message.includes("Blocked by AdGuard") || 
-              error.message.includes("fetchError") || 
-              error.message.includes("AdGuard")) {
-            errorMessage = "请求被广告拦截器阻止";
-            detailedMessage = "请禁用广告拦截器或添加本站到白名单";
-            console.warn("[WARN] 广告拦截器阻止了请求");
-          }
-          // 检测网络连接问题
-          else if (error.message.includes("Failed to fetch") || 
-                   error.message.includes("NetworkError") || 
-                   error.message.includes("net::ERR_")) {
-            errorMessage = "网络连接失败";
-            detailedMessage = "请检查您的网络连接";
-            console.warn("[WARN] 网络连接失败");
-          }
-          // 检测超时问题
-          else if (error.name === "AbortError" || 
-                   error.message.includes("timeout")) {
-            errorMessage = "请求超时";
-            detailedMessage = "服务器响应时间过长，请稍后重试";
-            console.warn("[WARN] 请求超时");
-          }
-          // 检测跨域问题
-          else if (error.message.includes("CORS") || 
-                   error.message.includes("cross-origin")) {
-            errorMessage = "跨域请求被阻止";
-            detailedMessage = "请检查服务器CORS配置";
-            console.warn("[WARN] 跨域请求问题");
-          }
-          // 其他未知错误
-          else {
-            errorMessage = "未知错误";
-            detailedMessage = `错误代码: ${error.name || "N/A"}`;
-            console.warn("[WARN] 未知错误类型");
-          }
-          
-          // 更新状态变量显示错误信息
-          this.activeSim = errorMessage;
-          this.networkProvider = detailedMessage;
-          
-          // 设置关键数据点的默认值
-          this.temperature = "N/A";
-          this.simStatus = "N/A";
-          this.signalPercentage = "0";
-          this.signalAssessment = "无信号";
-          this.internetConnectionStatus = "断开连接";
-          
-          // 在控制台显示完整错误信息
-          console.error("[ERROR DETAILS] 错误名称:", error.name);
-          console.error("[ERROR DETAILS] 错误消息:", error.message);
-          console.error("[ERROR DETAILS] 错误堆栈:", error.stack);
-          
-          // 在页面上显示详细错误信息（可选）
-          this.showErrorNotification(errorMessage, detailedMessage);
-        });
-      },
-      
-      // 显示错误通知的方法
-      showErrorNotification(title, message) {
-        // 检查是否已存在错误通知
-        const existingNotification = document.getElementById('error-notification');
-        if (existingNotification) {
-          existingNotification.remove();
-        }
-        
-        // 创建通知元素
-        const notification = document.createElement('div');
-        notification.id = 'error-notification';
-        notification.className = 'alert alert-danger alert-dismissible fade show';
-        notification.style.position = 'fixed';
-        notification.style.top = '20px';
-        notification.style.right = '20px';
-        notification.style.zIndex = '10000';
-        notification.style.maxWidth = '400px';
-        notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-        
-        notification.innerHTML = `
-          <strong>${title}</strong>
-          <p class="mb-0">${message}</p>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        `;
-        
-        // 添加到页面
-        document.body.appendChild(notification);
-        
-        // 自动关闭通知
-        setTimeout(() => {
-          if (notification.parentNode) {
-            notification.classList.add('fade');
-            setTimeout(() => {
-              if (notification.parentNode) {
-                notification.remove();
-              }
-            }, 150);
-          }
-        }, 5000);
-      },
-      
-      // 初始化方法 - 添加重试机制
-      init() {
-        console.log("[INFO] Initializing application");
-        
-        const maxRetries = 3;
-        let retryCount = 0;
-        
-        const fetchWithRetry = () => {
+
+          clearInterval(this.intervalId);
+          this.refreshRate = this.newRefreshRate;
+          console.log("刷新率更新为: " + this.refreshRate + "秒");
+          localStorage.setItem("refreshRate", this.refreshRate);
+          this.init();
+        },
+
+        init() {
+          this.fetchUpTime();
+          const storedRefreshRate = localStorage.getItem("refreshRate");
+          this.refreshRate = storedRefreshRate ? parseInt(storedRefreshRate) : 3;
           this.fetchAllInfo();
-          
+
+          fetch("/cgi-bin/get_ping")
+            .then((response) => response.text())
+            .then((data) => {
+              this.internetConnectionStatus = data.trim() === "OK" ? "Connected" : "Disconnected";
+            })
+            .catch((error) => {
+              console.error("Ping请求失败:", error);
+              this.internetConnectionStatus = "Disconnected";
+            });
+
+          this.lastUpdate = new Date().toLocaleString();
+          console.log("初始化完成，刷新率: " + this.refreshRate + "秒");
+
           this.intervalId = setInterval(() => {
-            console.log("[INFO] Refreshing data...");
-            
-            // 重置重试计数器
-            retryCount = 0;
-            
-            const retryFetch = () => {
-              this.fetchAllInfo();
-              retryCount++;
-              
-              if (retryCount >= maxRetries) {
-                console.error("[ERROR] Max retries reached. Stopping refresh.");
-                clearInterval(this.intervalId);
-                this.activeSim = "连接失败，请刷新页面";
-                this.showErrorNotification(
-                  "连接失败", 
-                  "已达到最大重试次数，请刷新页面或检查网络连接"
-                );
-              }
-            };
-            
-            // 初始请求
-            retryFetch();
-            
+            console.log("定时刷新...");
+            this.fetchUpTime();
+            this.fetchAllInfo();
+
+            fetch("/cgi-bin/get_ping")
+              .then((response) => response.text())
+              .then((data) => {
+                this.internetConnectionStatus = data.trim() === "OK" ? "Connected" : "Disconnected";
+              })
+              .catch((error) => {
+                console.error("Ping请求失败:", error);
+                this.internetConnectionStatus = "Disconnected";
+              });
+
+            this.lastUpdate = new Date().toLocaleString();
           }, this.refreshRate * 1000);
-        };
-        
-        fetchWithRetry();
-      }
-    };
-  }
-</script>
-  </body>
+        },
+      };
+    }
+  </script>
+</body>
+
 </html>
