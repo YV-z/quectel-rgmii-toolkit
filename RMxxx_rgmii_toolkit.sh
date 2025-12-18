@@ -824,7 +824,7 @@ echo "                                           :+##+.            "
 
     echo -e "\e[92m"
     echo "Welcome to iamromulan's RGMII Toolkit script for Quectel RMxxx Series modems!"
-    echo "Visit https://github.com/iamromulan for more!"
+    echo "Visit https://ghfast.top/https://github.com/iamromulan for more!"
     echo -e "\e[0m"
     echo "Select an option:"
     echo -e "\e[0m"
@@ -923,7 +923,7 @@ echo "                                           :+##+.            "
 			mkdir /usrdata/root
      	    mkdir /usrdata/root/bin
 			cd /usrdata/root/bin
-     	    wget -O fast https://github.com/ddo/fast/releases/download/v0.0.4/fast_linux_arm && chmod +x fast
+     	    wget -O fast https://ghfast.top/https://github.com/ddo/fast/releases/download/v0.0.4/fast_linux_arm && chmod +x fast
      	    cd /
 			ln -sf /usrdata/root/bin/fast /bin
      	    remount_ro
