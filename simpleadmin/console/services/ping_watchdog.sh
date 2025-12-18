@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the hostname or IP address to ping
-HOSTNAME="google.com"
+HOSTNAME="baidu.com"
 
 # Number of pings to attempt
 PING_COUNT=6
